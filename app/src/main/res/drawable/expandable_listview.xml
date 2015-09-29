@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 下拉状态 -->
+    <item android:drawable="@mipmap/go_down"
+          android:drawingCacheQuality="auto"
+          android:state_expanded="false"/>
+    <!-- 收起状态 -->
+    <item android:drawable="@mipmap/go_up"
+          android:drawingCacheQuality="auto"
+          android:state_expanded="true"/>
+</selector>

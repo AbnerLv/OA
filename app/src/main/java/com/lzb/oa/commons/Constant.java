@@ -12,6 +12,6 @@ public class Constant {
     /**
      * 服务端IP地址
      */
-    public final static String URL = "http://130.252.9.14/SMUProject_Server/";
+    public final static String URL = "http://10.0.0.168:8080/OAServer/";
 
 }

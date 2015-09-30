@@ -4,15 +4,16 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -26,8 +27,7 @@ import org.json.JSONObject;
 public class BackPassword extends BaseActivity implements OnClickListener {
 
     private final static String BACK_PASSWORD_URL = Constant.URL
-            + "back_password.php";
-
+            + "back_password.json";
     private EditText etBackEmpNo;
     private EditText etBackPhoneNo;
     private EditText etBackIdentify;
@@ -73,10 +73,14 @@ public class BackPassword extends BaseActivity implements OnClickListener {
 
                 mQueue = Volley.newRequestQueue(getApplicationContext());
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                        BACK_PASSWORD_URL, json, new Listener<JSONObject>() {
-
+                        Method.POST, BACK_PASSWORD_URL, json,
+                        new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
+                                Log.d("TAG", response.toString());
+                                Toast.makeText(BackPassword.this,
+                                        response.toString(), Toast.LENGTH_SHORT)
+                                        .show();
                                 try {
                                     dialog(response.get("emp_password")
                                             .toString());
@@ -84,11 +88,17 @@ public class BackPassword extends BaseActivity implements OnClickListener {
                                     e.printStackTrace();
                                 }
                             }
-                        }, new ErrorListener() {
+                        }, new Response.ErrorListener() {
 
                             @Override
                             public void onErrorResponse(VolleyError error) {
-
+                                Log.e("TAG", error.getMessage(), error);
+                                Toast.makeText(
+                                        BackPassword.this,
+                                        "网络连接出错，请检查网络状况！"
+                                                + etBackEmpNo.getText()
+                                                        .toString(),
+                                        Toast.LENGTH_LONG).show();
                             }
                         });
                 mQueue.add(jsonObjectRequest);

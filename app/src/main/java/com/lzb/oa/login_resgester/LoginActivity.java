@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -27,6 +29,7 @@ import com.lzb.oa.BaseActivity;
 import com.lzb.oa.MainActivity;
 import com.lzb.oa.R;
 import com.lzb.oa.commons.Constant;
+import com.lzb.oa.ui.CircleDrawableImage;
 import com.lzb.oa.utils.ActivityCollector;
 
 import org.json.JSONException;
@@ -35,11 +38,11 @@ import org.json.JSONObject;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import cn.jpush.android.api.JPushInterface;
+
 
 public class LoginActivity extends BaseActivity implements OnClickListener {
 
-    private final static String LOGIN_URL = Constant.URL + "login.php";
+    private final static String LOGIN_URL = Constant.URL + "login.json";
 
     private EditText tvUsername;
     private EditText tvPassword;
@@ -63,10 +66,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        /*
-         * JPushInterface.setDebugMode(true);
-         * JPushInterface.init(getApplicationContext());
-         */
+        // JPushInterface.setDebugMode(true);
+        // JPushInterface.init(getApplicationContext());
 
         init();
 
@@ -93,13 +94,13 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
-        JPushInterface.onResume(this);
+        // JPushInterface.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        JPushInterface.onPause(this);
+        // JPushInterface.onPause(this);
     }
 
     private void init() {
@@ -114,9 +115,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         tvBackpass.setOnClickListener(this);
         tvNewuser.setOnClickListener(this);
 
-        // Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
-        // R.mipmap.logo);
-        // ivLoginLogo.setImageDrawable(new CircleDrawableImage(bitmap));
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
+                R.mipmap.logo1);
+        ivLoginLogo.setImageDrawable(new CircleDrawableImage(bitmap));
 
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
@@ -182,7 +183,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     }
 
     private void checkLogin(JSONObject json) {
-        progressDialog();
         // 创建一个RequestQueue队列
         mQueue = Volley.newRequestQueue(getApplicationContext());
         // 向服务端发送请求
@@ -192,8 +192,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("TAG", response.toString());
-                        // Toast.makeText(LoginActivity.this,
-                        // response.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, response.toString(),
+                                Toast.LENGTH_SHORT).show();
                         try {
                             int success = Integer.parseInt(response
                                     .getString("success"));

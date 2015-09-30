@@ -96,7 +96,6 @@
     <orderEntry type="library" exported="" name="httpcore-4.4.1" level="project" />
     <orderEntry type="library" exported="" name="commons-codec-1.9" level="project" />
     <orderEntry type="library" exported="" name="bcprov-ext-jdk16-146" level="project" />
-    <orderEntry type="library" exported="" name="jpush-sdk-release1.7.3" level="project" />
     <orderEntry type="library" exported="" name="BaiduLBS_Android" level="project" />
     <orderEntry type="library" exported="" name="support-v4-23.0.1" level="project" />
     <orderEntry type="library" exported="" name="httpclient-4.5" level="project" />

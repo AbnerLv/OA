@@ -33,7 +33,7 @@ import java.util.HashMap;
 public class CustomerInfoFragment extends Fragment {
 
     private final static String CUSTOMER_INFO_URL = Constant.URL
-            + "customer_info.php";
+            + "customer_info.json";
 
     private ListView lvCustomerInfo;
     private RequestQueue mQueue = null;

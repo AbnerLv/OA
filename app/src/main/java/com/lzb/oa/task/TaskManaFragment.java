@@ -32,9 +32,7 @@ import java.util.HashMap;
 
 public class TaskManaFragment extends Fragment {
 
-    private final static String TASK_INFO_URL = Constant.URL + "task_info.php";
-    // private ArrayList<HashMap<String, Object>> listTask = new
-    // ArrayList<HashMap<String,Object>>();
+    private final static String TASK_INFO_URL = Constant.URL + "task_info.json";
     public TaskManaAdapter taskManaAdapter = null;
     private ListView lvTaskInfo;
     private RequestQueue mQueue = null;
@@ -86,7 +84,9 @@ public class TaskManaFragment extends Fragment {
                         for (int i = 0; i < response.length(); i++) {
                             HashMap<String, Object> map = new HashMap<String, Object>();
                             try {
-                                JSONObject jObj = (JSONObject) response.get(i);
+
+                                JSONObject jObj = new JSONObject(response
+                                        .get(i).toString());
                                 map.put("roomer_no", jObj.get("roomer_no"));
                                 map.put("roomer_name", jObj.get("roomer_name"));
                                 map.put("roomer_sex", jObj.get("roomer_sex"));
@@ -100,8 +100,8 @@ public class TaskManaFragment extends Fragment {
                                 map.put("roomer_rent", jObj.get("roomer_rent"));
                                 map.put("roomer_complete",
                                         jObj.get("roomer_complete"));
-                                map.put("roomer_emp_no",
-                                        jObj.get("roomer_emp_no"));
+                                // map.put("roomer_emp_no",
+                                // jObj.get("roomer_emp_no"));
                                 map.put("house_city", jObj.get("house_city"));
                                 map.put("house_address",
                                         jObj.get("house_address"));
@@ -113,8 +113,6 @@ public class TaskManaFragment extends Fragment {
                         taskManaAdapter.setItemList(listTask);
                         taskManaAdapter.notifyDataSetChanged();
                         lvTaskInfo.setAdapter(taskManaAdapter);
-                        // Toast.makeText(ComplanyNotices.this,
-                        // response.toString(), Toast.LENGTH_SHORT).show();
                         Log.e("TAG", response.toString());
                     }
                 }, new ErrorListener() {
@@ -245,8 +243,8 @@ public class TaskManaFragment extends Fragment {
                             .get("roomer_rent").toString();
                     String roomerComplete = listTask.get(position)
                             .get("roomer_complete").toString();
-                    String roomerEmpNo = listTask.get(position)
-                            .get("roomer_emp_no").toString();
+                    // String roomerEmpNo = listTask.get(position)
+                    // .get("roomer_emp_no").toString();
                     String roomerHouseCity = listTask.get(position)
                             .get("house_city").toString();
                     String roomerHouseAddress = listTask.get(position)
@@ -254,7 +252,7 @@ public class TaskManaFragment extends Fragment {
                     TaskDetail.startTaskDetail(getActivity(), roomerNo,
                             roomerName, roomerSex, roomerPhoneNo,
                             roomerHouseNo, roomerDate, roomerPeriod,
-                            roomerRent, roomerComplete, roomerEmpNo,
+                            roomerRent, roomerComplete, null,
                             roomerHouseCity, roomerHouseAddress);
 
                 }

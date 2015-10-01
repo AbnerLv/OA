@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:hint="2015-03-31"
+            android:hint="2015-08-31"
             android:textSize="18sp" />
         
         <TextView
@@ -47,7 +47,7 @@
         android:layout_marginTop="10dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:hint="我们接受委托，对潍坊北大青鸟华光科技股份有限公司（以下简称青鸟华光公司）2014年12月31日的财务报告内部控制进行审汁。我们接受委托，对潍坊北大青鸟华光科技股份有限公司（以下简称青鸟华光公司）2014年12月31日的财务报告内部控制进行审汁。我们接受委托，对潍坊北大青鸟华光科技股份有限公司（以下简称青鸟华光公司）2014年12月31日的财务报告内部控制进行审汁。"
+        android:hint="我们接受委托，对上海几度信息科技有限公司 2015年8月31日的财务报告内部控制进行审汁。"
         android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
         android:textSize="17sp" />

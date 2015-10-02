@@ -37,9 +37,9 @@ import java.util.TimerTask;
 public class EditPerInfo extends BaseActivity implements OnClickListener,
         OnCheckedChangeListener {
 
-    private final static String PER_INFO_URL = Constant.URL + "per_info.php";
+    private final static String PER_INFO_URL = Constant.URL + "per_info.json";
     private final static String EDIT_PER_INFO_URL = Constant.URL
-            + "edit_per_info.php";
+            + "edit_per_info.json";
 
     private EditText etPerInfoNickname;
     private EditText etPerInfoName;

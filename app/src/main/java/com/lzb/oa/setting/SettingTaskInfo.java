@@ -35,7 +35,7 @@ import java.util.HashMap;
 public class SettingTaskInfo extends BaseActivity {
 
     private final static String PER_TASK_INFO_URL = Constant.URL
-            + "task_info.php";
+            + "task_info.json";
 
     private ListView lvSettingTaskInfo;
     private SettingTaskManaAdapter settingTaskManaAdapter = null;

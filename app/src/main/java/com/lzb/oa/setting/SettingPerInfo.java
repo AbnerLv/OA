@@ -32,7 +32,7 @@ import org.json.JSONObject;
 
 public class SettingPerInfo extends BaseActivity implements OnClickListener {
 
-    private final static String PER_INFO_URL = Constant.URL + "per_info.php";
+    private final static String PER_INFO_URL = Constant.URL + "per_info.json";
 
     private TextView tvPerInfoNickname;
     private TextView tvPerInfoName;

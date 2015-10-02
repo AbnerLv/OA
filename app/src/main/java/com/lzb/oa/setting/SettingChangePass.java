@@ -30,7 +30,7 @@ import org.json.JSONObject;
 public class SettingChangePass extends BaseActivity implements OnClickListener {
 
     private final static String CHANGE_PASS_URL = Constant.URL
-            + "change_pass.php";
+            + "change_pass.json";
 
     private EditText etChangePassUsername;
     private EditText etChangePassOldPass;

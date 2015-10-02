@@ -77,7 +77,9 @@ public class CustomerInfoFragment extends Fragment {
                         Log.e("jsonArray", response.toString());
                         for (int i = 0; i < response.length(); i++) {
                             try {
-                                JSONObject json = response.getJSONObject(i);
+                                JSONObject json = new JSONObject(response
+                                        .get(i).toString());
+
                                 HashMap<String, Object> map = new HashMap<String, Object>();
                                 map.put("roomer_no", json.get("roomer_no"));
                                 map.put("roomer_name", json.get("roomer_name"));

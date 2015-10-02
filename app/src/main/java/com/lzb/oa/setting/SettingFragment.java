@@ -27,7 +27,7 @@ import org.json.JSONObject;
 public class SettingFragment extends Fragment implements OnClickListener {
 
     private final static String NICKNAME_URL = Constant.URL
-            + "get_nickname.php";
+            + "get_nickname.json";
 
     private LinearLayout settingPerinfo;
     private LinearLayout settingTaskinfo;

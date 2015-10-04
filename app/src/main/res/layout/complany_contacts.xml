@@ -8,7 +8,7 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin">
 
-    <com.lzb.oa.ui.CustomExpandableListView
+    <com.lzb.oa.ui.view.CustomExpandableListView
         android:id="@+id/elv_company_contacts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
-import com.lzb.oa.login_resgester.LoginActivity;
+import com.lzb.oa.ui.login_resgester.LoginActivity;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;

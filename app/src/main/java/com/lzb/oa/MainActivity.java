@@ -11,10 +11,10 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.lzb.oa.complany.ComplanyManaFragment;
-import com.lzb.oa.customer.CustomerInfoFragment;
-import com.lzb.oa.setting.SettingFragment;
-import com.lzb.oa.task.TaskManaFragment;
+import com.lzb.oa.ui.complany.ComplanyManaFragment;
+import com.lzb.oa.ui.customer.CustomerInfoFragment;
+import com.lzb.oa.ui.setting.SettingFragment;
+import com.lzb.oa.ui.task.TaskManaFragment;
 
 /**
  * 项目的主Activity，所有的Fragment都嵌入在这里。

@@ -23,13 +23,15 @@ android {
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/LICENSE'
     }
+
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.0.1'
-    compile files('libs/pinyin4j-2.5.0.jar')
     compile files('libs/httpclient-4.5.jar')
     compile files('libs/httpcore-4.4.1.jar')
     compile files('libs/commons-codec-1.9.jar')
+    compile project(':smssdk')
+    compile files('libs/bcprov-ext-jdk16-146.jar')
 }

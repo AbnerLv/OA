@@ -36,7 +36,7 @@
         android:layout_marginTop="22dp"
         android:orientation="horizontal">
 
-        <com.lzb.oa.ui.ClearEditText
+        <com.lzb.oa.ui.view.ClearEditText
             android:id="@+id/et_phone_no"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp">
 
-        <com.lzb.oa.ui.ClearEditText
+        <com.lzb.oa.ui.view.ClearEditText
             android:id="@+id/et_verifycode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -1,13 +1,16 @@
 package com.lzb.oa.utils;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
 import android.widget.TextView;
 
-// import cn.smssdk.EventHandler;
-// import cn.smssdk.SMSSDK;
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
 
 public class SMSVerifyUtil {
     /*
@@ -23,48 +26,60 @@ public class SMSVerifyUtil {
      * @param handler
      *            消息处理
      */
+
+    public static void initSMS(Context context, String appKey,
+            String appSecret, final Handler handler) {
+        SMSSDK.initSDK(context, appKey, appSecret);
+        EventHandler eh = new EventHandler() {
+
+            @Override
+            public void afterEvent(int event, int result, Object data) {
+
+                Message msg = new Message();
+                msg.arg1 = event;
+                msg.arg2 = result;
+                msg.obj = data;
+                handler.sendMessage(msg);
+            }
+        };
+        SMSSDK.registerEventHandler(eh);
+    }
+
     /*
-     * public static void initSMS(Context context, String appKey, String
-     * appSecret, final Handler handler) { SMSSDK.initSDK(context, appKey,
-     * appSecret); EventHandler eh = new EventHandler() {
-     * 
-     * @Override public void afterEvent(int event, int result, Object data) {
-     * 
-     * Message msg = new Message(); msg.arg1 = event; msg.arg2 = result; msg.obj
-     * = data; handler.sendMessage(msg); }
-     * 
-     * }; SMSSDK.registerEventHandler(eh); }
-     *//**
      * 获取验证码
      * 
-     * @param code
-     *            国家代码
-     * @param phonEditText
-     *            电话号码
-     * @param sensmsButton
-     *            按钮
-     * @param phString
-     *            存储电话号码
-     * @param bg
-     *            背景样式
+     * @param code 国家代码
+     * 
+     * @param phonEditText 电话号码
+     * 
+     * @param sensmsButton 按钮
+     * 
+     * @param phString 存储电话号码
+     * 
+     * @param bg 背景样式
      */
-    /*
-     * public static void getCode(String code, TextView phonEditText, TextView
-     * sensmsButton, Drawable bg) { SMSSDK.getVerificationCode(code,
-     * phonEditText.getText().toString()); CountDown mc = new CountDown(6000,
-     * 1000, sensmsButton, bg); mc.start(); }
-     *//**
+
+    public static void getCode(String code, TextView phonEditText,
+            TextView sensmsButton, Drawable bg) {
+        SMSSDK.getVerificationCode(code, phonEditText.getText().toString());
+        CountDown mc = new CountDown(6000, 1000, sensmsButton, bg);
+        mc.start();
+    }
+
+    /**
      * 
      * @param code
      *            国家代码
      * @param phString
      *            电话号码
-     * @param verEditText
+     * @param
      */
-    /*
-     * public static void submitCode(String code, String phString, String str) {
-     * SMSSDK.submitVerificationCode(code, phString, str); }
-     *//**
+
+    public static void submitCode(String code, String phString, String str) {
+        SMSSDK.submitVerificationCode(code, phString, str);
+    }
+
+    /**
      * 截取字符串，获取字符串中的code
      * 
      * @param s

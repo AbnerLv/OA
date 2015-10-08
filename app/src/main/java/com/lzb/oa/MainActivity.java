@@ -19,7 +19,7 @@ import com.lzb.oa.ui.task.TaskManaFragment;
 /**
  * 项目的主Activity，所有的Fragment都嵌入在这里。
  * 
- * @author abner
+ * @author lvzhenbin
  * @date 2015-9-30
  */
 public class MainActivity extends BaseActivity implements OnClickListener {

@@ -23,10 +23,6 @@ import cn.smssdk.SMSSDK;
 public class SMSRegisterActivity extends BaseActivity implements
         OnClickListener {
 
-    // 填写从短信SDK应用后台注册得到的APPKEY
-    private static String APPKEY = "addb908c50f4";
-    // 填写从短信SDK应用后台注册得到的APPSECRET
-    private static String APPSECRET = "b3668eaf3ef4825e6a7653fd8d1799bc";
     public String phString;
     public String code;
     private Spinner spDepartment;
@@ -83,7 +79,7 @@ public class SMSRegisterActivity extends BaseActivity implements
 
         init();
 
-        SMSVerifyUtil.initSMS(this, APPKEY, APPSECRET, handler);
+        SMSVerifyUtil.initSMS(this, handler);
     }
 
     private void init() {
@@ -129,10 +125,8 @@ public class SMSRegisterActivity extends BaseActivity implements
 
     @Override
     protected void onDestroy() {
-        // TODO Auto-generated method stub
         super.onDestroy();
-        // 必须有，否则会造成内存泄露
-        SMSSDK.unregisterAllEventHandler();
+        SMSSDK.unregisterAllEventHandler(); // 必须有，否则会造成内存泄露
     }
 
 }

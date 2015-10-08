@@ -4,8 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -15,7 +13,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +26,6 @@ import com.lzb.oa.BaseActivity;
 import com.lzb.oa.MainActivity;
 import com.lzb.oa.R;
 import com.lzb.oa.commons.Constant;
-import com.lzb.oa.ui.view.CircleDrawableImage;
 import com.lzb.oa.utils.ActivityCollector;
 
 import org.json.JSONException;
@@ -47,7 +43,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     private Button btn_login;
     private TextView tvBackpass;
     private TextView tvNewuser;
-    private ImageView ivLoginLogo;
     private RequestQueue mQueue = null;
     private SharedPreferences sp;
 
@@ -62,6 +57,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().hide();
         setContentView(R.layout.activity_login);
 
         // JPushInterface.setDebugMode(true);
@@ -107,15 +103,11 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         tvBackpass = (TextView) findViewById(R.id.tv_backpass);
         tvNewuser = (TextView) findViewById(R.id.tv_newuser);
         btn_login = (Button) findViewById(R.id.btn_login);
-        ivLoginLogo = (ImageView) findViewById(R.id.iv_login_logo);
+
 
         btn_login.setOnClickListener(this);
         tvBackpass.setOnClickListener(this);
         tvNewuser.setOnClickListener(this);
-
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
-                R.mipmap.logo1);
-        ivLoginLogo.setImageDrawable(new CircleDrawableImage(bitmap));
 
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");

@@ -165,8 +165,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         case R.id.tv_newuser:
             Intent intent1 = new Intent(LoginActivity.this,
                     SMSRegisterActivity.class);
-            // Intent intent = new Intent(LoginActivity.this,
-            // RegisterActivity.class);
             startActivity(intent1);
             break;
         }
@@ -182,8 +180,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("TAG", response.toString());
-                        Toast.makeText(LoginActivity.this, response.toString(),
-                                Toast.LENGTH_SHORT).show();
                         try {
                             int success = Integer.parseInt(response
                                     .getString("success"));

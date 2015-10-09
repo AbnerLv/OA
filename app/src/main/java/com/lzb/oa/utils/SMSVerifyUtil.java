@@ -121,15 +121,15 @@ public class SMSVerifyUtil {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            textView.setText(millisUntilFinished / 1000 + "秒后重新获取验证码");
+            textView.setText(millisUntilFinished / 1000 + "秒重置");
             textView.setClickable(false);
-            textView.setBackgroundColor(Color.GRAY);
+            textView.setBackgroundColor(Color.RED);
         }
 
         @SuppressLint("NewApi")
         @Override
         public void onFinish() {
-            textView.setText("重新获取验证码");
+            textView.setText("重置");
             textView.setBackground(bg);
             textView.setClickable(true);
         }

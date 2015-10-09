@@ -2,6 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/login_background"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -26,7 +27,7 @@
                 android:text="昵   称："
                 android:textSize="@dimen/activity_text_size"/>
 
-            <com.lzb.oa.ui.view.ClearEditText
+            <EditText
                 android:id="@+id/et_register_emp_nickname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -50,7 +51,7 @@
                 android:text="员工号："
                 android:textSize="@dimen/activity_text_size"/>
 
-            <com.lzb.oa.ui.view.ClearEditText
+            <EditText
                 android:id="@+id/et_register_emp_no"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -74,7 +75,7 @@
                 android:text="员工姓名"
                 android:textSize="@dimen/activity_text_size"/>
 
-            <com.lzb.oa.ui.view.ClearEditText
+            <EditText
                 android:id="@+id/et_register_emp_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -98,7 +99,7 @@
                 android:text="密  码："
                 android:textSize="@dimen/activity_text_size"/>
 
-            <com.lzb.oa.ui.view.ClearEditText
+            <EditText
                 android:id="@+id/et_register_pass"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -124,7 +125,7 @@
                 android:text="确认密码"
                 android:textSize="@dimen/activity_text_size"/>
 
-            <com.lzb.oa.ui.view.ClearEditText
+            <EditText
                 android:id="@+id/et_register_pass_confirm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

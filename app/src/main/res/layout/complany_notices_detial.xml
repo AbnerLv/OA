@@ -49,9 +49,9 @@
             android:gravity="right" >
 
             <LinearLayout
+                style="@style/button_normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_click"
                 android:orientation="horizontal" >
 
                 <TextView

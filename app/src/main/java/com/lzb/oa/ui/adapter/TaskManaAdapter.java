@@ -153,6 +153,14 @@ public class TaskManaAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
     final class ViewHolder {
         TextView tvTaskRent;
         TextView tvTaskDate;
@@ -160,6 +168,4 @@ public class TaskManaAdapter extends BaseAdapter {
         TextView tvTaskAddress;
         TextView tvTaskFlag;
     }
-
-    
 }

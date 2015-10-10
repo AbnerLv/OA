@@ -8,7 +8,6 @@
     <option name="optimizeImports" value="false" />
     <option name="pathToConfigFileJava" value="$APPLICATION_HOME_DIR$/plugins/java-formatter/Simplr-Android-Java-Formatter.xml" />
     <option name="selectedJavaProfile" value="Simplr Android Java" />
-    <option name="useOldEclipseJavaFormatter" value="true" />
   </component>
   <component name="EntryPointsManager">
     <entry_points version="2.0" />

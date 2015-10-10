@@ -225,8 +225,6 @@ public class CustomerDetailActivity extends BaseActivity implements
             String address = StringSplitUtil
                     .interceptString(tvCustomerDetailAddress.getText()
                             .toString().trim());
-            // SettingMap.startSettingMapSearch(CustomerDetailActivity.this,
-            // city, address);
             break;
 
         case R.id.tv_customer_detail_owner_phone_no:

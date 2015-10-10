@@ -1,12 +1,16 @@
 package com.lzb.oa.service;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.ListView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.lzb.oa.commons.Constant;
+import com.lzb.oa.service.response.ErrorResponse;
+import com.lzb.oa.ui.adapter.TaskManaAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,11 +33,17 @@ public class TaskManaService {
         return instance;
     }
 
-    /*
-     * 向服务端发出请求
+    /**
+     * 获取任务信息
+     * 
+     * @param context
+     * @param taskManaAdapter
+     * @param lvTaskInfo
      */
-    public ArrayList<HashMap<String, Object>> sendToServer(
-            RequestQueue mQueue) {
+    public void getTaskInfo(Context context,
+            final TaskManaAdapter taskManaAdapter, final ListView lvTaskInfo) {
+        RequestQueue mQueue = Volley.newRequestQueue(context);
+
         final ArrayList<HashMap<String, Object>> listTask = new ArrayList<>();
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(TASK_INFO_URL,
                 new Response.Listener<JSONArray>() {
@@ -43,6 +53,7 @@ public class TaskManaService {
                         for (int i = 0; i < response.length(); i++) {
                             HashMap<String, Object> map = new HashMap<>();
                             try {
+
                                 JSONObject jObj = new JSONObject(
                                         response.get(i).toString());
                                 map.put("roomer_no", jObj.get("roomer_no"));
@@ -58,8 +69,8 @@ public class TaskManaService {
                                 map.put("roomer_rent", jObj.get("roomer_rent"));
                                 map.put("roomer_complete",
                                         jObj.get("roomer_complete"));
-                                map.put("roomer_emp_no",
-                                        jObj.get("roomer_emp_no"));
+                                // map.put("roomer_emp_no",
+                                // jObj.get("roomer_emp_no"));
                                 map.put("house_city", jObj.get("house_city"));
                                 map.put("house_address",
                                         jObj.get("house_address"));
@@ -68,15 +79,12 @@ public class TaskManaService {
                                 e.printStackTrace();
                             }
                         }
+                        taskManaAdapter.setItemList(listTask);
+                        taskManaAdapter.notifyDataSetChanged();
+                        lvTaskInfo.setAdapter(taskManaAdapter);
                         Log.e("TAG", response.toString());
                     }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                    }
-                });
+                }, new ErrorResponse(context));
         mQueue.add(jsonArrayRequest);
-        return listTask;
     }
 }

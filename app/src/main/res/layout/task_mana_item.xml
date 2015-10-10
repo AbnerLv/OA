@@ -7,14 +7,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/tv_task_rent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="租售标志"
-            android:textSize="20sp" />
+            android:textSize="16sp"/>
 
     </LinearLayout>
 
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:hint="2015-08-31"
-            android:textSize="18sp" />
+            android:textSize="16sp"/>
         
         <TextView
             android:id="@+id/tv_task_period"
@@ -37,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:hint="时间段"
-            android:textSize="18sp" />
+            android:textSize="16sp"/>
     </RelativeLayout>
 
     <TextView
@@ -47,9 +48,8 @@
         android:layout_marginTop="10dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:hint="我们接受委托，对上海几度信息科技有限公司 2015年8月31日的财务报告内部控制进行审汁。"
         android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
-        android:textSize="17sp" />
+        android:textSize="16sp"/>
 
 </LinearLayout>

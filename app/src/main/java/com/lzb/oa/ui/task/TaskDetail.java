@@ -26,9 +26,10 @@ import org.json.JSONObject;
 
 public class TaskDetail extends BaseActivity implements OnClickListener {
 
-    private final static String TASK_DETAIL_URL = Constant.URL + "get_task.php";
+    private final static String TASK_DETAIL_URL = Constant.URL
+            + "get_task.json";
     private final static String CANCEL_TASK_URL = Constant.URL
-            + "cancel_task.php";
+            + "cancel_task.json";
 
     private TextView tvTaskDetailNo;
     private TextView tvTaskDetailName;
@@ -98,6 +99,7 @@ public class TaskDetail extends BaseActivity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.task_detail);
         mQueue = Volley.newRequestQueue(getApplicationContext());
         init();
@@ -183,7 +185,6 @@ public class TaskDetail extends BaseActivity implements OnClickListener {
         switch (v.getId()) {
         case R.id.tv_task_detail_address:
             Toast.makeText(TaskDetail.this, "地图功能", Toast.LENGTH_SHORT).show();
-            // SettingMap.startSettingMapSearch(this, city, address);
             break;
 
         case R.id.btn_task_detail_cancel:

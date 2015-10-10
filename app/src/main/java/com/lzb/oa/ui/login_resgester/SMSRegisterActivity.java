@@ -61,7 +61,9 @@ public class SMSRegisterActivity extends BaseActivity implements
                 }
             } else {
                 ((Throwable) data).printStackTrace();
-                Toast.makeText(getApplicationContext(), data.toString(),
+                // Toast.makeText(getApplicationContext(), data.toString(),
+                // Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "发送失败",
                         Toast.LENGTH_LONG).show();
             }
 

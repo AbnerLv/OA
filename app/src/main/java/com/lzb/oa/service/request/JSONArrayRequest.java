@@ -18,7 +18,7 @@ import java.io.UnsupportedEncodingException;
 public class JSONArrayRequest extends JsonRequest<JSONArray> {
 
     /**
-     * 重写JsonArrayRequest 类
+     * 重写 volley的 JsonArrayRequest 类
      * 
      * @param method
      * @param url

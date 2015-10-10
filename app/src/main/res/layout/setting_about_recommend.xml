@@ -16,14 +16,15 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="系统介绍："
-            android:textSize="25sp" />
+            android:text="功能介绍："
+            android:textColor="@color/qing"
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="		本系统由刘某人开发，历时六个月，在导师王某某的指导下完成！"
-            android:textSize="20sp" />
+            android:hint="		改系统正在开发中......"
+            android:textSize="16sp"/>
     </LinearLayout>
 </ScrollView>

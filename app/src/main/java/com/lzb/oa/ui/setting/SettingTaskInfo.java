@@ -61,11 +61,7 @@ public class SettingTaskInfo extends BaseActivity {
     }
 
     private void sendToServer(Context context) {
-        final ArrayList<HashMap<String, Object>> listTask = new ArrayList<HashMap<String, Object>>();
-        /*
-         * 想服务端发出请求
-         */
-        // 创建一个RequestQueue队列
+        final ArrayList<HashMap<String, Object>> listTask = new ArrayList<>();
         mQueue = Volley.newRequestQueue(context);
         try {
             Intent intent = getIntent();
@@ -129,7 +125,6 @@ public class SettingTaskInfo extends BaseActivity {
                     });
             mQueue.add(jsonArrayRequest);
         } catch (JSONException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
     }

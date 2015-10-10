@@ -31,7 +31,6 @@ public class SettingFragment extends Fragment implements OnClickListener {
 
     private LinearLayout settingPerinfo;
     private LinearLayout settingTaskinfo;
-    // private LinearLayout settingMap;
     private LinearLayout settingAbout;
     private LinearLayout settingExit;
     private LinearLayout settingChange;
@@ -59,8 +58,6 @@ public class SettingFragment extends Fragment implements OnClickListener {
                 R.id.layout_perinfo);
         settingTaskinfo = (LinearLayout) getActivity().findViewById(
                 R.id.layout_taskinfo);
-        // settingMap = (LinearLayout)
-        // getActivity().findViewById(R.id.layout_map);
         settingAbout = (LinearLayout) getActivity().findViewById(
                 R.id.layout_about);
         settingChange = (LinearLayout) getActivity().findViewById(
@@ -108,7 +105,6 @@ public class SettingFragment extends Fragment implements OnClickListener {
 
         settingPerinfo.setOnClickListener(this);
         settingTaskinfo.setOnClickListener(this);
-        // settingMap.setOnClickListener(this);
         settingAbout.setOnClickListener(this);
         settingChange.setOnClickListener(this);
         settingExit.setOnClickListener(this);
@@ -126,13 +122,6 @@ public class SettingFragment extends Fragment implements OnClickListener {
             SettingTaskInfo.startSettingTaskInfo(getActivity(), empNo);
             Toast.makeText(getActivity(), "已领取任务", Toast.LENGTH_SHORT).show();
             break;
-
-        /*
-         * case R.id.layout_map:
-         * SettingMap.startSettingMapLocation(getActivity());
-         * Toast.makeText(getActivity(), "地图", Toast.LENGTH_SHORT).show();
-         * break;
-         */
 
         case R.id.layout_about:
             SettingAbout.startSettingAbout(getActivity());

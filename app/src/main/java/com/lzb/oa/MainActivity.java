@@ -20,7 +20,7 @@ import com.lzb.oa.ui.task.TaskManaFragment;
  * 项目的主Activity，所有的Fragment都嵌入在这里。
  * 
  * @author lvzhenbin
- * @date 2015-9-30
+ * @date 2015-9-23
  */
 public class MainActivity extends BaseActivity implements OnClickListener {
 
@@ -114,14 +114,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         getActionBar().hide();
         setContentView(R.layout.activity_main);
-
-        /*
-         * SharePreferenceUtil spu = new SharePreferenceUtil(this, "login");
-         * String userName = spu.loadStringSharedPreference("userName"); String
-         * passWord = spu.loadStringSharedPreference("passWord");
-         * Toast.makeText(MainActivity.this, userName + "\n" + passWord,
-         * Toast.LENGTH_SHORT).show();
-         */
         // 初始化布局元素
         initViews();
         fragmentManager = getFragmentManager();

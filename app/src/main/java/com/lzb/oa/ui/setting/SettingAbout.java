@@ -35,11 +35,9 @@ public class SettingAbout extends BaseActivity implements OnClickListener {
     public static String getAppVersionName(Context context) {
         String versionName = "";
         try {
-            // —get the package info—
             PackageManager pm = context.getPackageManager();
             PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
             versionName = pi.versionName;
-            // versioncode = pi.versionCode;
             if (versionName == null || versionName.length() <= 0) {
                 return "";
             }
@@ -83,15 +81,13 @@ public class SettingAbout extends BaseActivity implements OnClickListener {
             break;
 
         case R.id.layout_setting_recommend:
-            // Toast.makeText(SettingAbout.this, "点击介绍" + version,
-            // Toast.LENGTH_SHORT).show();
             SettingAboutRecommend.startSettingAboutRecommend(SettingAbout.this);
             break;
 
         case R.id.layout_setting_test:
             String city = "上海";
             String address = "上海市浦东新区浦建路725弄2号";
-            // SettingMap.startSettingMapSearch(this, city, address);
+
             break;
 
         default:

@@ -1,14 +1,10 @@
 package com.lzb.oa.ui.login_resgester;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -16,34 +12,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request.Method;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.lzb.oa.BaseActivity;
-import com.lzb.oa.MainActivity;
 import com.lzb.oa.R;
-import com.lzb.oa.commons.Constant;
+import com.lzb.oa.service.AuthService;
 import com.lzb.oa.utils.ActivityCollector;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class LoginActivity extends BaseActivity implements OnClickListener {
 
-    private final static String LOGIN_URL = Constant.URL + "login.json";
 
     private EditText tvUsername;
     private EditText tvPassword;
     private Button btn_login;
     private TextView tvBackpass;
     private TextView tvNewuser;
-    private RequestQueue mQueue = null;
     private SharedPreferences sp;
 
     public static void startLoginActivity(Context context, String username,
@@ -60,9 +44,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         getActionBar().hide();
         setContentView(R.layout.activity_login);
 
-        // JPushInterface.setDebugMode(true);
-        // JPushInterface.init(getApplicationContext());
-
         init();
 
         // 将用户名，密码信息保存
@@ -76,7 +57,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 json.put("PassWord", password);
                 tvUsername.setText(username);
                 tvPassword.setText(password);
-                checkLogin(json);
+
+                AuthService.getInstance().checkLogin(json, LoginActivity.this);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -88,13 +70,11 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
-        // JPushInterface.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        // JPushInterface.onPause(this);
     }
 
     private void init() {
@@ -121,7 +101,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
-        // 登陆按钮点击事件
         case R.id.btn_login:
             // 将数据封装成json格式
             if (tvUsername.getText() == null
@@ -150,7 +129,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 editor.putString("passWord", passWord);
                 editor.commit();
 
-                checkLogin(json);
+                AuthService.getInstance().checkLogin(json, LoginActivity.this);
             }
 
             break;
@@ -170,62 +149,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         }
     }
 
-    private void checkLogin(JSONObject json) {
-        // 创建一个RequestQueue队列
-        mQueue = Volley.newRequestQueue(getApplicationContext());
-        // 向服务端发送请求
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Method.POST, LOGIN_URL, json,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("TAG", response.toString());
-                        try {
-                            int success = Integer.parseInt(response
-                                    .getString("success"));
-                            if (success == 1) {
-                                progressDialog();
-                            } else {
-                                Toast.makeText(LoginActivity.this,
-                                        "输入的用户名或密码有错", Toast.LENGTH_LONG)
-                                        .show();
-                            }
-                        } catch (NumberFormatException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("TAG", error.getMessage(), error);
-                        Toast.makeText(LoginActivity.this, "网络连接出错，请检查网络状况！",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
 
-        mQueue.add(jsonObjectRequest);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -236,25 +161,5 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         return super.onKeyDown(keyCode, event);
     }
 
-    private void progressDialog() {
-        final ProgressDialog proDialog = new ProgressDialog(this);
-        proDialog.setTitle("验证中");
-        proDialog.setMessage("正在登陆，请稍后…");
-        proDialog.setIndeterminate(true);
-        proDialog.setCancelable(false);
-        proDialog.show();
 
-        final Timer t = new Timer();
-        t.schedule(new TimerTask() {
-
-            @Override
-            public void run() {
-                proDialog.dismiss();
-                t.cancel();
-                Intent intent = new Intent(LoginActivity.this,
-                        MainActivity.class);
-                startActivity(intent);
-            }
-        }, 3000);
-    }
 }

@@ -88,10 +88,6 @@
             android:label="已领取任务">
         </activity>
         <activity
-            android:name=".ui.setting.SettingMap"
-            android:label="地图">
-        </activity>
-        <activity
             android:name=".ui.setting.SettingAbout"
             android:label="关于">
         </activity>

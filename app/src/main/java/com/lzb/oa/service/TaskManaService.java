@@ -23,7 +23,7 @@ import java.util.HashMap;
  * Created by lvzhenbin on 2015/10/9.
  */
 public class TaskManaService {
-    private final static String TASK_INFO_URL = Constant.URL + "task_info.json";
+
     public static TaskManaService instance;
 
     public static TaskManaService getInstance() {
@@ -42,6 +42,7 @@ public class TaskManaService {
      */
     public void getTaskInfo(Context context,
             final TaskManaAdapter taskManaAdapter, final ListView lvTaskInfo) {
+        String TASK_INFO_URL = Constant.URL + "task_info.json";
         RequestQueue mQueue = Volley.newRequestQueue(context);
 
         final ArrayList<HashMap<String, Object>> listTask = new ArrayList<>();

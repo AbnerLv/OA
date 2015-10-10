@@ -7,15 +7,16 @@ import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
 import com.lzb.oa.commons.Constant;
+import com.lzb.oa.service.request.JSONArrayRequest;
 import com.lzb.oa.ui.adapter.TaskManaAdapter;
 
 import org.json.JSONArray;
@@ -28,15 +29,15 @@ import java.util.HashMap;
 public class SettingTaskInfo extends BaseActivity {
 
     private final static String PER_TASK_INFO_URL = Constant.URL
-            + "task_info.json";
+            + "my_task.json";
 
     private ListView lvSettingTaskInfo;
     private TaskManaAdapter taskManaAdapter = null;
     private RequestQueue mQueue = null;
 
-    public static void startSettingTaskInfo(Context context, String empNo) {
+    public static void startSettingTaskInfo(Context context, String emp_no) {
         Intent intent = new Intent(context, SettingTaskInfo.class);
-        intent.putExtra("empNo", empNo);
+        intent.putExtra("emp_no", emp_no);
         context.startActivity(intent);
     }
 
@@ -60,7 +61,6 @@ public class SettingTaskInfo extends BaseActivity {
     }
 
     private void sendToServer(Context context) {
-
         final ArrayList<HashMap<String, Object>> listTask = new ArrayList<HashMap<String, Object>>();
         /*
          * 想服务端发出请求
@@ -70,11 +70,11 @@ public class SettingTaskInfo extends BaseActivity {
         try {
             Intent intent = getIntent();
             JSONObject json = new JSONObject();
+            json.put("emp_no", intent.getStringExtra("emp_no"));
 
-            json.put("empNo", intent.getStringExtra("empNo"));
-
-            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                    PER_TASK_INFO_URL, new Listener<JSONArray>() {
+            JSONArrayRequest jsonArrayRequest = new JSONArrayRequest(
+                    Request.Method.POST, PER_TASK_INFO_URL, json,
+                    new Listener<JSONArray>() {
 
                         @Override
                         public void onResponse(JSONArray response) {

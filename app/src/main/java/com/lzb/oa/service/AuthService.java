@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.lzb.oa.MainActivity;
+import com.lzb.oa.cache.EmpInfoCache;
 import com.lzb.oa.commons.Constant;
 import com.lzb.oa.service.response.ErrorResponse;
 
@@ -67,6 +68,7 @@ public class AuthService {
                             Toast.makeText(context, "输入的用户名或密码有错",
                                     Toast.LENGTH_LONG).show();
                         } else {
+                            EmpInfoCache.cacheEmpInfo(context, response);
                             progressDialog(context);
                         }
                     }
@@ -101,5 +103,6 @@ public class AuthService {
             }
         }, 3000);
     }
+
 
 }

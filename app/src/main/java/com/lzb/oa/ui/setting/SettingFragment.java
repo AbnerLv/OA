@@ -11,18 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.lzb.oa.R;
 import com.lzb.oa.commons.Constant;
 import com.lzb.oa.ui.login_resgester.LoginActivity;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class SettingFragment extends Fragment implements OnClickListener {
 
@@ -35,7 +26,6 @@ public class SettingFragment extends Fragment implements OnClickListener {
     private LinearLayout settingExit;
     private LinearLayout settingChange;
     private TextView tvPerdetail;
-    private RequestQueue mQueue = null;
     private String empNo;
 
     @Override
@@ -65,42 +55,31 @@ public class SettingFragment extends Fragment implements OnClickListener {
         settingExit = (LinearLayout) getActivity().findViewById(
                 R.id.layout_exit);
         tvPerdetail = (TextView) getActivity().findViewById(R.id.tv_perdetail);
-
-        SharedPreferences sp = getActivity().getSharedPreferences(
-                "myProjectForSMU", 0);
-        String name = sp.getString("userName", null);
-        JSONObject json = new JSONObject();
-        try {
-            json.put("userName", name);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        mQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                NICKNAME_URL, json, new Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            tvPerdetail.setText(response
-                                    .getString("emp_nickname").toString()
-                                    .trim());
-                            empNo = response.getString("emp_no").toString()
-                                    .trim();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
-        mQueue.add(jsonObjectRequest);
-
+        /*
+         * SharedPreferences sp = getActivity().getSharedPreferences(
+         * "myProjectForSMU", 0); String name = sp.getString("userName", null);
+         * JSONObject json = new JSONObject(); try { json.put("userName", name);
+         * } catch (JSONException e) { e.printStackTrace(); }
+         *
+         * mQueue =
+         * Volley.newRequestQueue(getActivity().getApplicationContext());
+         * JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+         * NICKNAME_URL, json, new Listener<JSONObject>() {
+         *
+         * @Override public void onResponse(JSONObject response) { try {
+         * tvPerdetail.setText(response .getString("emp_nickname").toString()
+         * .trim()); empNo = response.getString("emp_no").toString() .trim(); }
+         * catch (JSONException e) { e.printStackTrace(); } } }, new
+         * ErrorListener() {
+         *
+         * @Override public void onErrorResponse(VolleyError error) {
+         *
+         * } }); mQueue.add(jsonObjectRequest);
+         */
+        SharedPreferences sp = getActivity().getSharedPreferences("OAEmpInfo",
+                0);
+        String name = sp.getString("emp_nickname", null);
+        empNo = sp.getString("emp_no", null);
         tvPerdetail.setHint(name);
 
         settingPerinfo.setOnClickListener(this);

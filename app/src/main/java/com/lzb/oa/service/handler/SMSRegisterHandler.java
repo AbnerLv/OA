@@ -36,7 +36,7 @@ public class SMSRegisterHandler extends Handler {
         Log.e("result", "result=" + result);
         Log.e("data", "data=" + data);
 
-        if (result == SMSSDK.RESULT_COMPLETE) { // 短信注册成功后，返回MainActivity,然后提示新好友
+        if (result == SMSSDK.RESULT_COMPLETE) {
             if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {// 提交验证码成功
                 Toast.makeText(context, "提交验证码成功", Toast.LENGTH_SHORT).show();
 

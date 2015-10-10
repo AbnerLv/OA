@@ -11,7 +11,7 @@
         android:id="@+id/tv_customer_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="4"
+        android:layout_weight="1"
         android:gravity="center"
         android:text="客户名称"
         android:textColor="@color/black_qian"
@@ -21,7 +21,7 @@
         android:id="@+id/tv_customer_phone_no"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="4"
+        android:layout_weight="1"
         android:gravity="center"
         android:text="联系方式"
         android:textColor="@color/black_qian"
@@ -31,19 +31,11 @@
         android:id="@+id/tv_customer_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="4"
+        android:layout_weight="1"
         android:gravity="center"
         android:text="日期"
         android:textColor="@color/black_qian"
         android:textSize="12sp"/>
 
-    <ImageView
-        android:id="@+id/im_enter"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_gravity="left"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:src="@mipmap/right_arrow"/>
 
 </LinearLayout>

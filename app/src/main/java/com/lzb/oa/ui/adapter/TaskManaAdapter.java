@@ -19,6 +19,8 @@ import java.util.HashMap;
 /**
  * Created by lvzhenbin on 2015/10/9.
  */
+
+@SuppressLint("InflateParams")
 public class TaskManaAdapter extends BaseAdapter {
 
     private LayoutInflater mLayoutInflater;

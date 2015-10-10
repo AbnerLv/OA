@@ -31,14 +31,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="会议信息"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layout_complany_contacts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/listview_bg"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -55,15 +55,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="企业通讯录"
-                android:textSize="25sp"/>
+                android:text="企业人员"
+                android:textSize="20sp"/>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layout_complany_noticts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/listview_bg"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="企业公告"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
         </LinearLayout>
     </LinearLayout>
 

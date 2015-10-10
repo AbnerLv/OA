@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -20,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
 import com.lzb.oa.commons.Constant;
+import com.lzb.oa.commons.Period;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -128,26 +130,10 @@ public class TaskDetail extends BaseActivity implements OnClickListener {
         tvTaskDetailPhoneNo.setText("联系方式："
                 + intent.getStringExtra("roomerPhoneNo"));
         tvTaskDetailDate.setText("看房日期：" + intent.getStringExtra("roomerDate"));
-        switch (Integer.parseInt(intent.getStringExtra("roomerPeriod"))) {
-        case 1:
-            tvTaskDetailPeriod.setText("看房时间：9:30~11:30");
-            break;
 
-        case 2:
-            tvTaskDetailPeriod.setText("看房时间：13:30~15:30");
-            break;
+        tvTaskDetailPeriod.setText("看房时间：" + Period.getString(
+                Integer.parseInt(intent.getStringExtra("roomerPeriod"))));
 
-        case 3:
-            tvTaskDetailPeriod.setText("看房时间：15:30~17:30");
-            break;
-
-        case 4:
-            tvTaskDetailPeriod.setText("看房时间：18:30~20:30");
-            break;
-
-        default:
-            break;
-        }
         tvTaskDetailAddress.setText("详细地址："
                 + intent.getStringExtra("roomerHouseAddress"));
 
@@ -268,6 +254,15 @@ public class TaskDetail extends BaseActivity implements OnClickListener {
         default:
             break;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

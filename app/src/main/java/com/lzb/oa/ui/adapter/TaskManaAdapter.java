@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.lzb.oa.R;
+import com.lzb.oa.commons.Period;
 import com.lzb.oa.ui.task.TaskDetail;
 
 import java.util.ArrayList;
@@ -63,55 +64,45 @@ public class TaskManaAdapter extends BaseAdapter {
                     .findViewById(R.id.tv_task_rent);
             viewHolder.tvTaskDate = (TextView) convertView
                     .findViewById(R.id.tv_task_date);
-            viewHolder.tvTaskPeriod = (TextView) convertView
-                    .findViewById(R.id.tv_task_period);
             viewHolder.tvTaskAddress = (TextView) convertView
                     .findViewById(R.id.tv_task_address);
+            viewHolder.tvTaskFlag = (TextView) convertView
+                    .findViewById(R.id.tv_task_flag);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        if (Integer.parseInt(
-                listTask.get(position).get("roomer_rent").toString()) == 0) {
+        final String roomer_rent = listTask.get(position).get("roomer_rent")
+                .toString().trim();
+        final String roomer_date = listTask.get(position).get("roomer_date")
+                .toString().trim();
+        final String roomer_period = listTask.get(position).get("roomer_period")
+                .toString().trim();
+        final String house_address = listTask.get(position).get("house_address")
+                .toString().trim();
+        final String roomer_emp_no = listTask.get(position).get("roomer_emp_no")
+                .toString().trim();
+
+        Log.e("rent", roomer_rent);
+
+        if (Integer.parseInt(roomer_rent) == 0) {
             viewHolder.tvTaskRent.setText("租房");
         } else {
             viewHolder.tvTaskRent.setText("买房");
         }
-        viewHolder.tvTaskDate.setText(
-                "看房日期：" + listTask.get(position).get("roomer_date").toString());
-        Log.e("rent", listTask.get(position).get("roomer_rent").toString());
-        switch (Integer.parseInt(
-                listTask.get(position).get("roomer_period").toString())) {
-        case 1:
-            viewHolder.tvTaskPeriod.setHint("9:30~11:30");
-            break;
 
-        case 2:
-            viewHolder.tvTaskPeriod.setHint("13:30~15:30");
-            break;
+        viewHolder.tvTaskDate.setText("看房日期：" + roomer_date + "  "
+                + Period.getString(Integer.parseInt(roomer_period)));
+        viewHolder.tvTaskAddress.setText("房子地址： " + house_address);
 
-        case 3:
-            viewHolder.tvTaskPeriod.setHint("15:30~17:30");
-            break;
-
-        case 4:
-            viewHolder.tvTaskPeriod.setHint("18:30~20:30");
-            break;
-
-        default:
-            break;
+        if ("".equals(roomer_emp_no)) {
+            viewHolder.tvTaskFlag.setText("可领取");
+        } else {
+            viewHolder.tvTaskFlag.setText("任务已被" + roomer_emp_no + "领取，点击查看详情");
+            viewHolder.tvTaskFlag.setBackgroundColor(
+                    getContext().getResources().getColor(R.color.gray_bg));
         }
-        viewHolder.tvTaskAddress.setText(
-                listTask.get(position).get("house_address").toString());
-                /*
-                 * if ("".equals(listTask.get(position).get("roomer_emp_no"))){
-                 * viewHolder.tvTaskFlag.setText("可领取"); } else {
-                 * viewHolder.tvTaskFlag.setText("任务已被" +
-                 * listTask.get(position).get("roomer_emp_no").toString().trim()
-                 * + "领取，点击查看详情"); //
-                 * viewHolder.tvTaskFlag.setBackgroundColor(R.color.gray_bg); }
-                 */
 
         // 给ListView的Item点击事件
         convertView.setOnClickListener(new View.OnClickListener() {
@@ -120,33 +111,23 @@ public class TaskManaAdapter extends BaseAdapter {
             public void onClick(View v) {
 
                 String roomerNo = listTask.get(position).get("roomer_no")
-                        .toString();
+                        .toString().trim();
                 String roomerName = listTask.get(position).get("roomer_name")
-                        .toString();
+                        .toString().trim();
                 String roomerSex = listTask.get(position).get("roomer_sex")
-                        .toString();
+                        .toString().trim();
                 String roomerPhoneNo = listTask.get(position)
-                        .get("roomer_phone_no").toString();
+                        .get("roomer_phone_no").toString().trim();
                 String roomerHouseNo = listTask.get(position)
-                        .get("roomer_house_no").toString();
-                String roomerDate = listTask.get(position).get("roomer_date")
-                        .toString();
-                String roomerPeriod = listTask.get(position)
-                        .get("roomer_period").toString();
-                String roomerRent = listTask.get(position).get("roomer_rent")
-                        .toString();
+                        .get("roomer_house_no").toString().trim();
                 String roomerComplete = listTask.get(position)
-                        .get("roomer_complete").toString();
-                // String roomerEmpNo = listTask.get(position)
-                // .get("roomer_emp_no").toString();
+                        .get("roomer_complete").toString().trim();
                 String roomerHouseCity = listTask.get(position)
-                        .get("house_city").toString();
-                String roomerHouseAddress = listTask.get(position)
-                        .get("house_address").toString();
+                        .get("house_city").toString().trim();
                 TaskDetail.startTaskDetail(context, roomerNo, roomerName,
-                        roomerSex, roomerPhoneNo, roomerHouseNo, roomerDate,
-                        roomerPeriod, roomerRent, roomerComplete, null,
-                        roomerHouseCity, roomerHouseAddress);
+                        roomerSex, roomerPhoneNo, roomerHouseNo, roomer_date,
+                        roomer_period, roomer_rent, roomerComplete,
+                        roomer_emp_no, roomerHouseCity, house_address);
 
             }
         });
@@ -164,7 +145,6 @@ public class TaskManaAdapter extends BaseAdapter {
     final class ViewHolder {
         TextView tvTaskRent;
         TextView tvTaskDate;
-        TextView tvTaskPeriod;
         TextView tvTaskAddress;
         TextView tvTaskFlag;
     }

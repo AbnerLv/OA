@@ -69,8 +69,9 @@ public class TaskManaService {
                                 map.put("roomer_rent", jObj.get("roomer_rent"));
                                 map.put("roomer_complete",
                                         jObj.get("roomer_complete"));
-                                // map.put("roomer_emp_no",
-                                // jObj.get("roomer_emp_no"));
+                                map.put("roomer_emp_no",
+                                        jObj.get("roomer_emp_no") == null ? ""
+                                                : jObj.get("roomer_emp_no"));
                                 map.put("house_city", jObj.get("house_city"));
                                 map.put("house_address",
                                         jObj.get("house_address"));

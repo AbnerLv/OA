@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -37,7 +37,7 @@ import java.util.TimerTask;
 public class EditPerInfo extends BaseActivity implements OnClickListener,
         OnCheckedChangeListener {
 
-    private final static String PER_INFO_URL = Constant.URL + "per_info.json";
+
     private final static String EDIT_PER_INFO_URL = Constant.URL
             + "edit_per_info.json";
 
@@ -63,7 +63,6 @@ public class EditPerInfo extends BaseActivity implements OnClickListener,
     private Calendar calendar = Calendar.getInstance();
     private String sex = null;
 
-    private RequestQueue mQueue = null;
     private RequestQueue mQueueEdit = null;
 
     public static void startEditPerInfo(Context context) {
@@ -74,6 +73,7 @@ public class EditPerInfo extends BaseActivity implements OnClickListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.edit_per_info);
 
         init();
@@ -99,92 +99,43 @@ public class EditPerInfo extends BaseActivity implements OnClickListener,
         etPerInfoAddress = (EditText) findViewById(R.id.et_per_info_address);
         btnPerInfoSubmit = (Button) findViewById(R.id.btn_edit_per_info_submit);
 
-        // 获取数据库中已存在的信息
-        SharedPreferences sp = getSharedPreferences("myProjectForSMU", 0);
-        String userName = sp.getString("userName", null);
-        Log.e("userName", userName);
-        setPerInfo(userName);
+        setPerInfo();
 
         radioPerInfoSex.setOnCheckedChangeListener(this);
         etPerInfoBirthday.setOnClickListener(this);
         btnPerInfoSubmit.setOnClickListener(this);
     }
 
-    private void setPerInfo(String userName) {
-        if (userName != null && !"".equals(userName)) {
-            try {
-                JSONObject json = new JSONObject();
-                json.put("userName", userName);
-                // 创建一个RequestQueue队列
-                mQueue = Volley.newRequestQueue(getApplicationContext());
-                // 向服务端发送请求
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                        PER_INFO_URL, json, new Listener<JSONObject>() {
-
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    etPerInfoNickname.setText(response
-                                            .getString("emp_nickname"));
-                                    etPerInfoName.setText(response
-                                            .getString("emp_name"));
-
-                                    if (radioPerInfoMale.getText().toString()
-                                            .trim()
-                                            .equals(response.get("emp_sex"))) {
-                                        radioPerInfoMale.setChecked(true);
-                                    } else if (radioPerInfoFemale.getText()
-                                            .toString().trim()
-                                            .equals(response.get("emp_sex"))) {
-                                        radioPerInfoFemale.setChecked(true);
-                                    } else {
-                                        radioPerInfoSecret.setChecked(true);
-                                    }
-
-                                    // tvPerInfoSex.setText(response.getString("emp_sex"));
-                                    etPerInfoAge.setText(response
-                                            .getString("emp_age"));
-                                    etPerInfoPhoneNo.setText(response
-                                            .getString("emp_phone_no"));
-                                    etPerInfoEmail.setText(response
-                                            .getString("emp_email"));
-
-                                    etPerInfoEmpNo.setText(response
-                                            .getString("emp_no"));
-                                    etPerInfoDepartment.setText(response
-                                            .getString("emp_department"));
-                                    etPerInfoPosition.setText(response
-                                            .getString("emp_position"));
-                                    etPerInfoEntryDate.setText(response
-                                            .getString("emp_entry_date"));
-
-                                    etPerInfoBirthday.setText(response
-                                            .getString("emp_borthday"));
-                                    etPerInfoNation.setText(response
-                                            .getString("emp_nation"));
-                                    etPerInfoCity.setText(response
-                                            .getString("emp_city"));
-                                    etPerInfoAddress.setText(response
-                                            .getString("emp_address"));
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, new ErrorListener() {
-
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Log.e("TAG", error.getMessage(), error);
-                            }
-                        });
-                mQueue.add(jsonObjectRequest);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+    private void setPerInfo() {
+        SharedPreferences sp = getSharedPreferences("OAEmpInfo", 0);
+        etPerInfoNickname.setText(sp.getString("emp_nickname", null));
+        etPerInfoName.setText(sp.getString("emp_name", null));
+        Toast.makeText(getApplicationContext(), sp.getString("emp_name", null),
+                Toast.LENGTH_LONG).show();
+        if (radioPerInfoMale.getText().toString().trim()
+                .equals(sp.getString("emp_sex", null))) {
+            radioPerInfoMale.setChecked(true);
+        } else if (radioPerInfoFemale.getText().toString().trim()
+                .equals(sp.getString("emp_sex", null))) {
+            radioPerInfoFemale.setChecked(true);
+        } else {
+            radioPerInfoSecret.setChecked(true);
         }
-    }
 
+        etPerInfoAge.setText(sp.getString("emp_age", null));
+        etPerInfoPhoneNo.setText(sp.getString("emp_phone_no", null));
+        etPerInfoEmail.setText(sp.getString("emp_email", null));
+
+        etPerInfoEmpNo.setText(sp.getString("emp_no", null));
+        etPerInfoDepartment.setText(sp.getString("emp_department", null));
+        etPerInfoPosition.setText(sp.getString("emp_position", null));
+        etPerInfoEntryDate.setText(sp.getString("emp_entry_date", null));
+
+        etPerInfoBirthday.setText(sp.getString("emp_birthday", null));
+        etPerInfoNation.setText(sp.getString("emp_nation", null));
+        etPerInfoCity.setText(sp.getString("emp_city", null));
+        etPerInfoAddress.setText(sp.getString("emp_address", null));
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -253,6 +204,18 @@ public class EditPerInfo extends BaseActivity implements OnClickListener,
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.home:
+            finish();
+            break;
+
+        default:
+            break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         if (checkedId == R.id.radio_per_info_male) {

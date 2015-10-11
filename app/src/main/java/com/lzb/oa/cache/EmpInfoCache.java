@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 
 import org.json.JSONObject;
 
+import java.util.Date;
+
 /**
  * Created by lvzhenbin on 2015/10/11.
  */
@@ -27,7 +29,8 @@ public class EmpInfoCache {
             editor.putString("emp_position", resp.getString("emp_position"));
             editor.putString("emp_entry_date",
                     resp.getString("emp_entry_date"));
-            editor.putString("emp_birthday", resp.getString("emp_birthday"));
+            editor.putString("emp_birthday",
+                    new Date(resp.getString("emp_birthday")).toString());
             editor.putString("emp_nation", resp.getString("emp_nation"));
             editor.putString("emp_identify", resp.getString("emp_identify"));
             editor.putString("emp_city", resp.getString("emp_city"));

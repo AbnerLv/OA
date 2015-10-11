@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,23 +15,12 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
-import com.lzb.oa.commons.Constant;
 import com.lzb.oa.ui.view.RoundDrawalleImage;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class SettingPerInfo extends BaseActivity implements OnClickListener {
 
-    private final static String PER_INFO_URL = Constant.URL + "per_info.json";
 
     private TextView tvPerInfoNickname;
     private TextView tvPerInfoName;
@@ -50,7 +38,6 @@ public class SettingPerInfo extends BaseActivity implements OnClickListener {
     private TextView tvPerInfoAddress;
     private ImageView ivPerinfo;
 
-    private RequestQueue mQueue = null;
 
     public static void startSettingPerInfo(Context context) {
         Intent intent = new Intent(context, SettingPerInfo.class);
@@ -60,8 +47,8 @@ public class SettingPerInfo extends BaseActivity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.setting_per_info);
-
         init();
     }
 
@@ -101,70 +88,25 @@ public class SettingPerInfo extends BaseActivity implements OnClickListener {
     }
 
     private void getPerInfo() {
-        SharedPreferences sp = getSharedPreferences("myProjectForSMU", 0);
-        String userName = sp.getString("userName", null);
-        Log.e("userName", userName);
-        if (userName != null && !"".equals(userName)) {
-            try {
-                JSONObject json = new JSONObject();
-                json.put("userName", userName);
-                // 创建一个RequestQueue队列
-                mQueue = Volley.newRequestQueue(getApplicationContext());
-                // 向服务端发送请求
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                        PER_INFO_URL, json, new Listener<JSONObject>() {
+        SharedPreferences sp = getSharedPreferences("OAEmpInfo", 0);
+        tvPerInfoNickname.setText(sp.getString("emp_nickname", null));
+        tvPerInfoName.setText(sp.getString("emp_name", null));
+        tvPerInfoSex.setText(sp.getString("emp_sex", null));
+        tvPerInfoAge.setText(sp.getString("emp_age", null));
+        tvPerInfoPhoneNum.setText(sp.getString("emp_phone_no", null));
+        tvPerInfoEmail.setText(sp.getString("emp_email", null));
 
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    tvPerInfoNickname.setText(response
-                                            .getString("emp_nickname"));
-                                    tvPerInfoName.setText(response
-                                            .getString("emp_name"));
-                                    tvPerInfoSex.setText(response
-                                            .getString("emp_sex"));
-                                    tvPerInfoAge.setText(response
-                                            .getString("emp_age"));
-                                    tvPerInfoPhoneNum.setText(response
-                                            .getString("emp_phone_no"));
-                                    tvPerInfoEmail.setText(response
-                                            .getString("emp_email"));
+        tvPerInfoEmpNo.setText(sp.getString("emp_no", null));
+        tvPerInfoDepartment.setText(sp.getString("emp_department", null));
+        tvPerInfoPosition.setText(sp.getString("emp_position", null));
+        tvPerInfoEntryDate.setText(sp.getString("emp_entry_date", null));
 
-                                    tvPerInfoEmpNo.setText(response
-                                            .getString("emp_no"));
-                                    tvPerInfoDepartment.setText(response
-                                            .getString("emp_department"));
-                                    tvPerInfoPosition.setText(response
-                                            .getString("emp_position"));
-                                    tvPerInfoEntryDate.setText(response
-                                            .getString("emp_entry_date"));
-
-                                    tvPerInfoBirthday.setText(response
-                                            .getString("emp_borthday"));
-                                    tvPerInfoNation.setText(response
-                                            .getString("emp_nation"));
-                                    tvPerInfoCity.setText(response
-                                            .getString("emp_city"));
-                                    tvPerInfoAddress.setText(response
-                                            .getString("emp_address"));
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, new ErrorListener() {
-
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-
-                            }
-                        });
-                mQueue.add(jsonObjectRequest);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
+        tvPerInfoBirthday.setText(sp.getString("emp_birthday", null));
+        tvPerInfoNation.setText(sp.getString("emp_nation", null));
+        tvPerInfoCity.setText(sp.getString("emp_city", null));
+        tvPerInfoAddress.setText(sp.getString("emp_address", null));
     }
+
 
     @Override
     public void onClick(View v) {
@@ -190,7 +132,7 @@ public class SettingPerInfo extends BaseActivity implements OnClickListener {
         }
     }
 
-    // ActionBar
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -203,9 +145,10 @@ public class SettingPerInfo extends BaseActivity implements OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.per_info_edit:
-            // Toast.makeText(SettingPerInfo.this, "修改个人信息",
-            // Toast.LENGTH_SHORT).show();
             EditPerInfo.startEditPerInfo(SettingPerInfo.this);
+            break;
+        case R.id.home:
+            finish();
             break;
 
         default:

@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@drawable/listview_bg"
+              android:background="@color/gray_line_background"
               android:orientation="horizontal"
               android:paddingBottom="10dp"
-              android:paddingTop="10dp">
+              android:paddingTop="10dp"
+    >
 
     <TextView
         android:id="@+id/tv_customer_name"
@@ -14,8 +15,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="客户名称"
-        android:textColor="@color/black_qian"
-        android:textSize="16sp"/>
+        android:textSize="14sp"/>
 
     <TextView
         android:id="@+id/tv_customer_phone_no"
@@ -24,8 +24,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="联系方式"
-        android:textColor="@color/black_qian"
-        android:textSize="16sp"/>
+        android:textSize="14sp"/>
 
     <TextView
         android:id="@+id/tv_customer_date"
@@ -34,8 +33,8 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="日期"
-        android:textColor="@color/black_qian"
-        android:textSize="16sp"/>
+        android:textSize="14sp"
+        />
 
 
 </LinearLayout>

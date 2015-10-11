@@ -2,20 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp" >
+              android:background="@color/login_background"
+              android:orientation="horizontal"
+              android:paddingBottom="15dp"
+              android:paddingTop="15dp">
 
 
     <TextView
         android:id="@+id/customer_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:layout_weight="1"
         android:gravity="center"
         android:text="客户名称"
-        android:textColor="@color/black_qian"
         android:textSize="18sp"/>
 
 
@@ -26,7 +25,6 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="联系方式"
-        android:textColor="@color/black_qian"
         android:textSize="18sp"/>
 
 
@@ -37,7 +35,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="日期"
-        android:textSize="16sp"/>
+        android:textSize="18sp"/>
 
 
 </LinearLayout>

@@ -10,29 +10,29 @@
             android:paddingTop="@dimen/activity_vertical_margin">
 
 
-<LinearLayout
+    <LinearLayout
         android:id="@+id/version"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/gray_bg"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-        android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-        android:src="@mipmap/applications_folder_black"/>
-
-        <TextView
-            android:id="@+id/tv_setting_about_version"
-            android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:hint="移动办公 v1.0"
-            android:textSize="15sp"/>
-    </LinearLayout>
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/applications_folder_black"/>
+
+    <TextView
+        android:id="@+id/tv_setting_about_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:hint="移动办公 v1.0"
+        android:textSize="15sp"/>
+</LinearLayout>
 
 
     <RelativeLayout

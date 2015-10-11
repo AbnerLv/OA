@@ -16,7 +16,7 @@
         android:gravity="center"
         android:text="客户名称"
         android:textColor="@color/black_qian"
-        android:textSize="16sp"/>
+        android:textSize="18sp"/>
 
 
     <TextView
@@ -27,7 +27,7 @@
         android:gravity="center"
         android:text="联系方式"
         android:textColor="@color/black_qian"
-        android:textSize="16sp"/>
+        android:textSize="18sp"/>
 
 
     <TextView

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by lvzhenbin on 2015/10/10.
+ * Created by lvzhenbin on 2015/10/10. 获取客户的信息
  */
 public class CustomerInfoAdapter extends BaseAdapter {
 
@@ -29,7 +29,6 @@ public class CustomerInfoAdapter extends BaseAdapter {
         mLayoutInflater = LayoutInflater.from(context);
     }
 
-    // 传入list内的数据
     public void setItemList(
             ArrayList<HashMap<String, Object>> listCustomerInfo) {
         this.listCustomerInfo = listCustomerInfo;
@@ -79,6 +78,9 @@ public class CustomerInfoAdapter extends BaseAdapter {
             viewHolder.tvCustomerDate.setText(listCustomerInfo.get(position)
                     .get("roomer_date").toString());
 
+            /**
+             * 点击查看明细
+             */
             convertView.setOnClickListener(new View.OnClickListener() {
 
                 @Override

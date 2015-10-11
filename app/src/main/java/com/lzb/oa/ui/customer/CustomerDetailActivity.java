@@ -5,19 +5,19 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
 import com.lzb.oa.commons.Constant;
+import com.lzb.oa.service.response.ErrorResponse;
 import com.lzb.oa.utils.StringSplitUtil;
 
 import org.json.JSONException;
@@ -25,10 +25,6 @@ import org.json.JSONObject;
 
 public class CustomerDetailActivity extends BaseActivity implements
         OnClickListener {
-
-    private final static String CUSTOMER_DETAIL_URL = Constant.URL
-            + "get_customer_detail.php";
-
     private TextView tvCustomerDetailNo;
     private TextView tvCustomerDetailNeed;
     private TextView tvCustomerDetailName;
@@ -48,22 +44,21 @@ public class CustomerDetailActivity extends BaseActivity implements
     private TextView tvCustomerDetailOwnerPhoneNo;
     private TextView tvCustomerDetailIsEmpty;
     private TextView tvCustomerDetailIsCompleted;
-    // private RatingBar rbCustomerDetailLevel;
 
     private RequestQueue mQueue;
 
     public static void startCustomerDetailActivity(Context context,
             String roomerNo) {
         Intent intent = new Intent(context, CustomerDetailActivity.class);
-        intent.putExtra("roomerNo", roomerNo);
+        intent.putExtra("roomer_no", roomerNo);
         context.startActivity(intent);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.customer_detail);
-
         init();
     }
 
@@ -88,26 +83,24 @@ public class CustomerDetailActivity extends BaseActivity implements
         tvCustomerDetailIsEmpty = (TextView) findViewById(R.id.tv_customer_detail_is_empty);
         tvCustomerDetailIsCompleted = (TextView) findViewById(R.id.tv_customer_detail_is_completed);
 
-        // rbCustomerDetailLevel = (RatingBar)
-        // findViewById(R.id.rb_customer_datail_level);
 
         tvCustomerDetailPhoneNo.setOnClickListener(this);
         tvCustomerDetailEmail.setOnClickListener(this);
-        tvCustomerDetailAddress.setOnClickListener(this);
         tvCustomerDetailOwnerPhoneNo.setOnClickListener(this);
 
         Intent intent = getIntent();
-        String roomerNo = intent.getStringExtra("roomerNo");
+        String roomerNo = intent.getStringExtra("roomer_no");
         JSONObject json = new JSONObject();
         try {
-            json.put("roomerNo", roomerNo);
+            json.put("roomer_no", roomerNo);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        getCustomerDetail(roomerNo, json);
+        getCustomerDetail(json);
     }
 
-    private void getCustomerDetail(String roomerNo, JSONObject json) {
+    private void getCustomerDetail(JSONObject json) {
+        String CUSTOMER_DETAIL_URL = Constant.URL + "get_customer_detail.json";
         mQueue = Volley.newRequestQueue(getApplicationContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 CUSTOMER_DETAIL_URL, json, new Listener<JSONObject>() {
@@ -190,12 +183,7 @@ public class CustomerDetailActivity extends BaseActivity implements
                             e.printStackTrace();
                         }
                     }
-                }, new ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                    }
-                });
+                }, new ErrorResponse(getApplicationContext()));
         mQueue.add(jsonObjectRequest);
     }
 
@@ -219,13 +207,6 @@ public class CustomerDetailActivity extends BaseActivity implements
             startActivity(it);
             break;
 
-        case R.id.tv_customer_detail_address:
-            String city = StringSplitUtil.interceptString(tvCustomerDetailCity
-                    .getText().toString().trim());
-            String address = StringSplitUtil
-                    .interceptString(tvCustomerDetailAddress.getText()
-                            .toString().trim());
-            break;
 
         case R.id.tv_customer_detail_owner_phone_no:
             Uri uri2 = Uri.parse("tel:"
@@ -240,4 +221,14 @@ public class CustomerDetailActivity extends BaseActivity implements
             break;
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

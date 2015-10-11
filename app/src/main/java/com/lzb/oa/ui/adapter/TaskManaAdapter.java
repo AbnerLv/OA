@@ -103,7 +103,8 @@ public class TaskManaAdapter extends BaseAdapter {
         } else {
             viewHolder.tvTaskFlag.setText("任务已被" + roomer_emp_no + "领取，点击查看详情");
             viewHolder.tvTaskFlag.setBackgroundColor(
-                    getContext().getResources().getColor(R.color.gray_bg));
+getContext()
+                    .getResources().getColor(R.color.light_red));
         }
 
         // 给ListView的Item点击事件

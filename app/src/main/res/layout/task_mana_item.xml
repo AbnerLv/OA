@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
               android:layout_marginBottom="10dp"
               android:layout_marginTop="10dp"
-    android:background="@drawable/listview_bg"
               android:orientation="vertical">
 
 
@@ -25,7 +24,6 @@
             android:id="@+id/tv_task_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:hint="2015-08-31"
             android:textSize="16sp"/>
         
@@ -48,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="5dp"
         android:hint="可领取"
         android:textSize="16sp"

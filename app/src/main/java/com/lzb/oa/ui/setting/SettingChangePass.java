@@ -1,8 +1,6 @@
 package com.lzb.oa.ui.setting;
 
-import android.app.AlertDialog.Builder;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,24 +11,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
-import com.lzb.oa.commons.Constant;
-import com.lzb.oa.ui.login_resgester.LoginActivity;
+import com.lzb.oa.service.SettingService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SettingChangePass extends BaseActivity implements OnClickListener {
 
-    private final static String CHANGE_PASS_URL = Constant.URL
-            + "change_pass.json";
 
     private EditText etChangePassUsername;
     private EditText etChangePassOldPass;
@@ -38,8 +27,6 @@ public class SettingChangePass extends BaseActivity implements OnClickListener {
     private EditText etChangePassConfirmPass;
     private Button btnChangePassSubmit;
     private Button btnChangePassReset;
-
-    private RequestQueue mQueue = null;
 
     public static void startSettingChangePass(Context context) {
         Intent intent = new Intent(context, SettingChangePass.class);
@@ -49,8 +36,8 @@ public class SettingChangePass extends BaseActivity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.setting_change_pass);
-
         init();
     }
 
@@ -100,39 +87,9 @@ public class SettingChangePass extends BaseActivity implements OnClickListener {
                 json.put("oldPass", etChangePassOldPass.getText().toString()
                         .trim());
                 json.put("newPass", password);
+                SettingService.getInstance().modifyPassword(
+                        SettingChangePass.this, json, username, password);
 
-                mQueue = Volley.newRequestQueue(getApplicationContext());
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                        CHANGE_PASS_URL, json, new Listener<JSONObject>() {
-
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    int success = Integer.parseInt(response
-                                            .getString("success").toString()
-                                            .trim());
-                                    if (success == 1) {
-                                        dialog(username, password);
-                                    } else {
-                                        Toast.makeText(SettingChangePass.this,
-                                                "请仔细核对用户名和密码是否正确！",
-                                                Toast.LENGTH_SHORT).show();
-                                    }
-                                } catch (NumberFormatException e) {
-                                    e.printStackTrace();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, new ErrorListener() {
-
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Log.e("TAG", error.getMessage(), error);
-                            }
-                        });
-
-                mQueue.add(jsonObjectRequest);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -150,28 +107,5 @@ public class SettingChangePass extends BaseActivity implements OnClickListener {
         }
     }
 
-    /**
-     * 弹出对话框
-     * 
-     * @param username
-     *            用户名
-     * @param password
-     *            密码
-     */
-    protected void dialog(final String username, final String password) {
-        Builder builder = new Builder(SettingChangePass.this);
-        builder.setMessage("密码已修改成功，请重新登录！");
-        builder.setTitle("提示");
-        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                LoginActivity.startLoginActivity(SettingChangePass.this,
-                        username, password);
-            }
-        });
-        builder.setCancelable(false);
-        builder.create().show();
-    }
 
 }

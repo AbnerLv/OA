@@ -4,8 +4,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -114,7 +112,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         getActionBar().hide();
         setContentView(R.layout.activity_main);
-        // 初始化布局元素
         initViews();
         fragmentManager = getFragmentManager();
         // 第一次启动时选中第0个tab
@@ -148,19 +145,15 @@ public class MainActivity extends BaseActivity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
         case R.id.task_layout:
-            // 当点击了消息tab时，选中第1个tab
             setTabSelection(0);
             break;
         case R.id.customer_layout:
-            // 当点击了联系人tab时，选中第2个tab
             setTabSelection(1);
             break;
         case R.id.company_layout:
-            // 当点击了动态tab时，选中第3个tab
             setTabSelection(2);
             break;
         case R.id.setting_layout:
-            // 当点击了设置tab时，选中第4个tab
             setTabSelection(3);
             break;
         default:
@@ -185,7 +178,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         case 0:
             // 当点击了动态tab时，改变控件的图片和文字颜色
             messageImage.setImageResource(R.mipmap.message_selected);
-            messageText.setTextColor(Color.WHITE);
+            messageText.setTextColor(Color.BLUE);
             if (taskManaFragment == null) {
                 // 如果taskManaFragment为空，则创建一个并添加到界面上
                 taskManaFragment = new TaskManaFragment();
@@ -200,7 +193,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         case 1:
             // 当点击了消息tab时，改变控件的图片和文字颜色
             contactsImage.setImageResource(R.mipmap.contacts_selected);
-            contactsText.setTextColor(Color.WHITE);
+            contactsText.setTextColor(Color.BLUE);
             if (customerInfoFragment == null) {
                 // 如果customerInfoFragment为空，则创建一个并添加到界面上
                 customerInfoFragment = new CustomerInfoFragment();
@@ -216,7 +209,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         case 2:
             // 当点击了联系人tab时，改变控件的图片和文字颜色
             newsImage.setImageResource(R.mipmap.news_selected);
-            newsText.setTextColor(Color.WHITE);
+            newsText.setTextColor(Color.BLUE);
             if (complanyManaFragment == null) {
                 // 如果complanyManaFragment为空，则创建一个并添加到界面上
                 complanyManaFragment = new ComplanyManaFragment();
@@ -232,7 +225,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         default:
             // 当点击了设置tab时，改变控件的图片和文字颜色
             settingImage.setImageResource(R.mipmap.setting_selected);
-            settingText.setTextColor(Color.WHITE);
+            settingText.setTextColor(Color.BLUE);
             if (settingFragment == null) {
                 // 如果SettingFragment为空，则创建一个并添加到界面上
                 settingFragment = new SettingFragment();
@@ -282,18 +275,4 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.customer_detail, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

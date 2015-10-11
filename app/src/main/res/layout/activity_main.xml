@@ -13,7 +13,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/tab_bg">
+        android:background="@color/white"
+        >
 
         <RelativeLayout
             android:id="@+id/task_layout"
@@ -41,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="任务管理"
-                    android:textColor="#82858b"/>
+                    />
             </LinearLayout>
         </RelativeLayout>
 
@@ -70,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="客户管理"
-                    android:textColor="#82858b"/>
+                    />
             </LinearLayout>
         </RelativeLayout>
 
@@ -99,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="公司管理"
-                    android:textColor="#82858b"/>
+                    />
             </LinearLayout>
         </RelativeLayout>
 
@@ -128,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="系统设置"
-                    android:textColor="#82858b"/>
+                    />
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

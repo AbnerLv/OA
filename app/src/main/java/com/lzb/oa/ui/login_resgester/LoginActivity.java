@@ -46,23 +46,13 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
         init();
 
-        // 将用户名，密码信息保存
-        sp = getSharedPreferences("myProjectForSMU", MODE_PRIVATE);
+        // 获取缓存的用户名，密码
+        sp = getSharedPreferences("OAEmpInfo", MODE_PRIVATE);
         if (sp != null) {
-            String username = sp.getString("userName", null);
-            String password = sp.getString("passWord", null);
-            JSONObject json = new JSONObject();
-            try {
-                json.put("UserName", username);
-                json.put("PassWord", password);
-                tvUsername.setText(username);
-                tvPassword.setText(password);
-
-                AuthService.getInstance().checkLogin(json, LoginActivity.this);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
+            String username = sp.getString("emp_nickname", null);
+            String password = sp.getString("emp_password", null);
+            tvUsername.setText(username);
+            tvPassword.setText(password);
         }
 
     }
@@ -102,7 +92,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         int id = v.getId();
         switch (id) {
         case R.id.btn_login:
-            // 将数据封装成json格式
             if (tvUsername.getText() == null
                     || "".equals(tvUsername.getText().toString().trim())) {
                 Toast.makeText(LoginActivity.this, "用户名不能为空！",
@@ -125,8 +114,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 }
 
                 SharedPreferences.Editor editor = sp.edit();
-                editor.putString("userName", userName);
-                editor.putString("passWord", passWord);
+                editor.putString("emp_nickname", userName);
+                editor.putString("emp_password", passWord);
                 editor.commit();
 
                 AuthService.getInstance().checkLogin(json, LoginActivity.this);

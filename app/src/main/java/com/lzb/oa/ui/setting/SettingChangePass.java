@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -49,10 +49,9 @@ public class SettingChangePass extends BaseActivity implements OnClickListener {
         btnChangePassSubmit = (Button) findViewById(R.id.btn_change_pass_submit);
         btnChangePassReset = (Button) findViewById(R.id.btn_change_pass_reset);
 
-        SharedPreferences sp = getSharedPreferences("myProjectForSMU",
+        SharedPreferences sp = getSharedPreferences("OAEmpInfo",
                 MODE_PRIVATE);
-        String username = sp.getString("userName", null);
-        Log.e("sp", username + ":");
+        String username = sp.getString("emp_nickname", null);
 
         if (!(username == null || "".equals(username))) {
             etChangePassUsername.setText(username);
@@ -107,5 +106,12 @@ public class SettingChangePass extends BaseActivity implements OnClickListener {
         }
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

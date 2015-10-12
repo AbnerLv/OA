@@ -25,6 +25,7 @@ import java.util.HashMap;
 public class TaskManaService {
 
     public static TaskManaService instance;
+    private RequestQueue mQueue;
 
     public static TaskManaService getInstance() {
         if (instance == null) {
@@ -43,8 +44,7 @@ public class TaskManaService {
     public void getTaskInfo(Context context,
             final TaskManaAdapter taskManaAdapter, final ListView lvTaskInfo) {
         String TASK_INFO_URL = Constant.URL + "task_info.json";
-        RequestQueue mQueue = Volley.newRequestQueue(context);
-
+        mQueue = Volley.newRequestQueue(context);
         final ArrayList<HashMap<String, Object>> listTask = new ArrayList<>();
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(TASK_INFO_URL,
                 new Response.Listener<JSONArray>() {

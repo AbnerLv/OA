@@ -29,9 +29,9 @@ import org.json.JSONObject;
 public class TaskDetail extends BaseActivity implements OnClickListener {
 
     private final static String TASK_DETAIL_URL = Constant.URL
-            + "get_task.json";
+            + "task/get_task.json";
     private final static String CANCEL_TASK_URL = Constant.URL
-            + "cancel_task.json";
+            + "task/cancel_task.json";
 
     private TextView tvTaskDetailNo;
     private TextView tvTaskDetailName;
@@ -46,8 +46,6 @@ public class TaskDetail extends BaseActivity implements OnClickListener {
     private RequestQueue mQueue = null;
     private JSONObject json = null;
 
-    private String city;
-    private String address;
 
     /**
      * 
@@ -122,8 +120,6 @@ public class TaskDetail extends BaseActivity implements OnClickListener {
 
         Intent intent = getIntent();
         Log.e("intent", intent.toString());
-        city = intent.getStringExtra("roomerHouseCity");
-        address = intent.getStringExtra("roomerHouseAddress");
         tvTaskDetailNo.setText("客户编号：" + intent.getStringExtra("roomerNo"));
         tvTaskDetailName.setText("客户姓名：" + intent.getStringExtra("roomerName"));
         tvTaskDetailSex.setText("客户性别：" + intent.getStringExtra("roometSex"));
@@ -131,8 +127,9 @@ public class TaskDetail extends BaseActivity implements OnClickListener {
                 + intent.getStringExtra("roomerPhoneNo"));
         tvTaskDetailDate.setText("看房日期：" + intent.getStringExtra("roomerDate"));
 
-        tvTaskDetailPeriod.setText("看房时间：" + Period.getString(
-                Integer.parseInt(intent.getStringExtra("roomerPeriod"))));
+        tvTaskDetailPeriod.setText("看房时间："
+                + Period.getString(Integer.parseInt(intent
+                        .getStringExtra("roomerPeriod"))));
 
         tvTaskDetailAddress.setText("详细地址："
                 + intent.getStringExtra("roomerHouseAddress"));
@@ -156,11 +153,11 @@ public class TaskDetail extends BaseActivity implements OnClickListener {
         }
         try {
             json = new JSONObject();
-            SharedPreferences sp = getSharedPreferences("myProjectForSMU",
+            SharedPreferences sp = getSharedPreferences("OAEmpInfo",
                     MODE_PRIVATE);
-            json.put("userName", sp.getString("userName", ""));
-            json.put("roomerNo", intent.getStringExtra("roomerNo"));
-            json.put("roomerHouseNo", intent.getStringExtra("roomerHouseNo"));
+            json.put("emp_no", sp.getString("emp_no", ""));
+            json.put("roomer_no", intent.getStringExtra("roomerNo"));
+            json.put("roomer_house_no", intent.getStringExtra("roomerHouseNo"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -169,9 +166,6 @@ public class TaskDetail extends BaseActivity implements OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-        case R.id.tv_task_detail_address:
-            Toast.makeText(TaskDetail.this, "地图功能", Toast.LENGTH_SHORT).show();
-            break;
 
         case R.id.btn_task_detail_cancel:
             JsonObjectRequest jsonObjectRequestCancel = new JsonObjectRequest(

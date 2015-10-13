@@ -55,27 +55,6 @@ public class SettingFragment extends Fragment implements OnClickListener {
         settingExit = (LinearLayout) getActivity().findViewById(
                 R.id.layout_exit);
         tvPerdetail = (TextView) getActivity().findViewById(R.id.tv_perdetail);
-        /*
-         * SharedPreferences sp = getActivity().getSharedPreferences(
-         * "myProjectForSMU", 0); String name = sp.getString("userName", null);
-         * JSONObject json = new JSONObject(); try { json.put("userName", name);
-         * } catch (JSONException e) { e.printStackTrace(); }
-         *
-         * mQueue =
-         * Volley.newRequestQueue(getActivity().getApplicationContext());
-         * JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-         * NICKNAME_URL, json, new Listener<JSONObject>() {
-         *
-         * @Override public void onResponse(JSONObject response) { try {
-         * tvPerdetail.setText(response .getString("emp_nickname").toString()
-         * .trim()); empNo = response.getString("emp_no").toString() .trim(); }
-         * catch (JSONException e) { e.printStackTrace(); } } }, new
-         * ErrorListener() {
-         *
-         * @Override public void onErrorResponse(VolleyError error) {
-         *
-         * } }); mQueue.add(jsonObjectRequest);
-         */
         SharedPreferences sp = getActivity().getSharedPreferences("OAEmpInfo",
                 0);
         String name = sp.getString("emp_nickname", null);
@@ -113,7 +92,7 @@ public class SettingFragment extends Fragment implements OnClickListener {
 
         case R.id.layout_exit:
             SharedPreferences sp = getActivity().getSharedPreferences(
-                    "myProjectForSMU", getActivity().MODE_PRIVATE);
+                    "OAEmpInfo", getActivity().MODE_PRIVATE);
             sp.edit().clear().commit();
             LoginActivity.startLoginActivity(getActivity(), "", "");
             Toast.makeText(getActivity(), "退出", Toast.LENGTH_SHORT).show();

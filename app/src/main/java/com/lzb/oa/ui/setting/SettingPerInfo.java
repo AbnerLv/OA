@@ -3,8 +3,6 @@ package com.lzb.oa.ui.setting;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,12 +10,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
-import com.lzb.oa.ui.view.RoundDrawalleImage;
 
 public class SettingPerInfo extends BaseActivity implements OnClickListener {
 
@@ -36,7 +32,6 @@ public class SettingPerInfo extends BaseActivity implements OnClickListener {
     private TextView tvPerInfoNation;
     private TextView tvPerInfoCity;
     private TextView tvPerInfoAddress;
-    private ImageView ivPerinfo;
 
 
     public static void startSettingPerInfo(Context context) {
@@ -76,11 +71,6 @@ public class SettingPerInfo extends BaseActivity implements OnClickListener {
         tvPerInfoNation = (TextView) findViewById(R.id.tv_per_info_nation);
         tvPerInfoCity = (TextView) findViewById(R.id.tv_per_info_city);
         tvPerInfoAddress = (TextView) findViewById(R.id.tv_per_info_address);
-
-        ivPerinfo = (ImageView) findViewById(R.id.iv_perinfo);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
-                R.mipmap.per_info_head);
-        ivPerinfo.setImageDrawable(new RoundDrawalleImage(bitmap));
 
         tvPerInfoPhoneNum.setOnClickListener(this);
         tvPerInfoEmail.setOnClickListener(this);

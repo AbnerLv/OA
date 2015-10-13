@@ -3,6 +3,7 @@ package com.lzb.oa.service;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -79,6 +80,12 @@ public class SettingService {
      */
     public void dialog(final String username, final String password,
             final Context context) {
+
+        SharedPreferences sp = context.getSharedPreferences("OAEmpInfo",
+                context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.clear();
+        editor.commit();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("密码已修改成功，请重新登录！");
         builder.setTitle("提示");

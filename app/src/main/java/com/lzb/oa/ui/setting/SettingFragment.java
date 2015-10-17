@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.lzb.oa.R;
 import com.lzb.oa.commons.Constant;
-import com.lzb.oa.ui.login_resgester.LoginActivity;
+import com.lzb.oa.ui.auth.LoginActivity;
 
 public class SettingFragment extends Fragment implements OnClickListener {
 

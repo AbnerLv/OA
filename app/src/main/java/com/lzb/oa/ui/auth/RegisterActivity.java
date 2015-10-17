@@ -1,4 +1,4 @@
-package com.lzb.oa.ui.login_resgester;
+package com.lzb.oa.ui.auth;
 
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +25,9 @@ import com.lzb.oa.utils.CheckNullUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * 用户注册
+ */
 public class RegisterActivity extends BaseActivity implements OnClickListener {
 
     private final static String REGISTER_URL = Constant.URL + "register.json";
@@ -65,7 +68,6 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
         btnRegisterSubmit.setOnClickListener(this);
         btnRegisterReset.setOnClickListener(this);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

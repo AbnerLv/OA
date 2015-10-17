@@ -12,7 +12,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.lzb.oa.commons.Constant;
 import com.lzb.oa.service.response.ErrorResponse;
-import com.lzb.oa.ui.login_resgester.LoginActivity;
+import com.lzb.oa.ui.auth.LoginActivity;
 
 import org.json.JSONObject;
 

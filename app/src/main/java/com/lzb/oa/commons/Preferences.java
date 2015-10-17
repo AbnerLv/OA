@@ -3,7 +3,7 @@ package com.lzb.oa.commons;
 /**
  * 用于存储全局变量
  * 
- * @author admin
+ * @author lvzhenbin
  *
  */
 

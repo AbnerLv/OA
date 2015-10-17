@@ -1,4 +1,4 @@
-package com.lzb.oa.ui.login_resgester;
+package com.lzb.oa.ui.auth;
 
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;

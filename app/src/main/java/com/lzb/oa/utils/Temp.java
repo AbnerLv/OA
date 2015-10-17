@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
-import com.lzb.oa.ui.login_resgester.LoginActivity;
+import com.lzb.oa.ui.auth.LoginActivity;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
@@ -53,7 +53,7 @@ public class Temp extends BaseActivity implements OnClickListener,
     private int status;
     private JSONObject json = new JSONObject();
     private Handler handler;
-    private String url = "http://130.234.1.67/Test/register.php";
+    private String url = "http://130.234.1.67/Test/register.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,4 +1,4 @@
-package com.lzb.oa.ui.login_resgester;
+package com.lzb.oa.ui.auth;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +21,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends BaseActivity implements OnClickListener {
-
 
     private EditText tvUsername;
     private EditText tvPassword;
@@ -73,7 +72,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         tvBackpass = (TextView) findViewById(R.id.tv_backpass);
         tvNewuser = (TextView) findViewById(R.id.tv_newuser);
         btn_login = (Button) findViewById(R.id.btn_login);
-
 
         btn_login.setOnClickListener(this);
         tvBackpass.setOnClickListener(this);
@@ -138,9 +136,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         }
     }
 
-
-
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -149,6 +144,5 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         }
         return super.onKeyDown(keyCode, event);
     }
-
 
 }

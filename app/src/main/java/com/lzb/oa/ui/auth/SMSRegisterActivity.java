@@ -1,4 +1,4 @@
-package com.lzb.oa.ui.login_resgester;
+package com.lzb.oa.ui.auth;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -39,8 +39,8 @@ public class SMSRegisterActivity extends BaseActivity implements
 
         init();
 
-        SMSVerifyUtil.initSMS(this,
-                new SMSRegisterHandler(SMSRegisterActivity.this, etPhoneNo));
+        SMSVerifyUtil.initSMS(this, new SMSRegisterHandler(
+                SMSRegisterActivity.this, etPhoneNo));
     }
 
     private void init() {

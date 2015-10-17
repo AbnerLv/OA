@@ -35,8 +35,8 @@ public class ComplanyContacts extends BaseActivity {
     private RequestQueue mQueueSon = null;
     private RequestQueue mQueueFather = null;
     private CompanyContactsAdapter companyContactsAdapter;
-    private ArrayList<HashMap<String, Object>> father_array = new ArrayList<HashMap<String, Object>>();
-    private ArrayList<HashMap<String, Object>> son_array = new ArrayList<HashMap<String, Object>>();
+    private ArrayList<HashMap<String, Object>> father_array = new ArrayList<>();
+    private ArrayList<HashMap<String, Object>> son_array = new ArrayList<>();
 
     /**
      * 启动Activity

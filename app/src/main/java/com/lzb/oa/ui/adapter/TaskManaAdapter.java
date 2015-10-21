@@ -2,7 +2,7 @@ package com.lzb.oa.ui.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,8 +86,6 @@ public class TaskManaAdapter extends BaseAdapter {
         final String roomer_emp_no = listTask.get(position).get("roomer_emp_no")
                 .toString().trim();
 
-        Log.e("rent", roomer_rent);
-
         if (Integer.parseInt(roomer_rent) == 0) {
             viewHolder.tvTaskRent.setText("租房");
         } else {
@@ -100,11 +98,12 @@ public class TaskManaAdapter extends BaseAdapter {
 
         if ("".equals(roomer_emp_no)) {
             viewHolder.tvTaskFlag.setText("可领取");
+            viewHolder.tvTaskFlag.setBackgroundColor(ContextCompat.getColor(
+                    getContext(), R.color.calendar_green));
         } else {
             viewHolder.tvTaskFlag.setText("任务已被" + roomer_emp_no + "领取，点击查看详情");
-            viewHolder.tvTaskFlag.setBackgroundColor(
-getContext()
-                    .getResources().getColor(R.color.light_red));
+            viewHolder.tvTaskFlag.setBackgroundColor(ContextCompat.getColor(
+                    getContext(), R.color.light_red));
         }
 
         // 给ListView的Item点击事件

@@ -57,26 +57,6 @@
         </activity>
 
         <!-- 公司 -->
-        <activity
-            android:name=".ui.complany.ComplanyMeeting"
-            android:label="会议信息">
-        </activity>
-        <activity
-            android:name=".ui.complany.ComplanyContacts"
-            android:label="企业通讯录">
-        </activity>
-        <activity
-            android:name=".ui.complany.ComplanyNotices"
-            android:label="企业公告">
-        </activity>
-        <activity
-            android:name=".ui.complany.ComplanyNoticesDetial"
-            android:label="公告明细">
-        </activity>
-        <activity
-            android:name=".ui.complany.ComplanyMeetingDetail"
-            android:label="会议明细">
-        </activity>
 
         <!-- 设置 -->
         <activity

@@ -49,19 +49,18 @@ public class ComplanyManaFragment extends Fragment implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
         case R.id.layout_complany_meeting:
-            ComplanyMeeting.startComplanyMeeting(getActivity());
-            // TaskDetail.startTaskDetail(getActivity());
-            Toast.makeText(getActivity(), "会议信息", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "会议信息-未实现", Toast.LENGTH_SHORT)
+                    .show();
             break;
 
         case R.id.layout_complany_contacts:
-            ComplanyContacts.startComplanyContacts(getActivity());
-            Toast.makeText(getActivity(), "企业通讯录", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "企业通讯录-未实现", Toast.LENGTH_SHORT)
+                    .show();
             break;
 
         case R.id.layout_complany_noticts:
-            ComplanyNotices.startComplanyNotices(getActivity());
-            Toast.makeText(getActivity(), "企业公告", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "企业公告-未实现", Toast.LENGTH_SHORT)
+                    .show();
             break;
 
         default:

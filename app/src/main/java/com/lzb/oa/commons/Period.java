@@ -1,6 +1,8 @@
 package com.lzb.oa.commons;
 
 /**
+ * 看房的时间段 枚举
+ *
  * Created by lvzhenbin on 2015/10/10.
  */
 public enum Period {

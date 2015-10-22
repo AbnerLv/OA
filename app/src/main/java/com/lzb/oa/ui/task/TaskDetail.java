@@ -153,7 +153,7 @@ public class TaskDetail extends BaseActivity implements OnClickListener {
         }
         try {
             json = new JSONObject();
-            SharedPreferences sp = getSharedPreferences("OAEmpInfo",
+            SharedPreferences sp = getSharedPreferences(Constant.EMPINFO,
                     MODE_PRIVATE);
             json.put("emp_no", sp.getString("emp_no", ""));
             json.put("roomer_no", intent.getStringExtra("roomerNo"));

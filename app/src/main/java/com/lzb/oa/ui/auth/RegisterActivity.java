@@ -140,6 +140,11 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
         }
     }
 
+    /**
+     * 注册
+     * 
+     * @param json
+     */
     private void empRegister(final JSONObject json) {
         mQueue = Volley.newRequestQueue(getApplicationContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(

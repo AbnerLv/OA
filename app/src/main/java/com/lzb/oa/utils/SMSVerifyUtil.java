@@ -13,7 +13,6 @@ import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
 public class SMSVerifyUtil {
-
     // 填写从短信SDK应用后台注册得到的APPKEY
     private static String APPKEY = "addb908c50f4";
     // 填写从短信SDK应用后台注册得到的APPSECRET
@@ -59,7 +58,7 @@ public class SMSVerifyUtil {
     public static void getCode(String code, TextView phonEditText,
             TextView sensmsButton, Drawable bg) {
         SMSSDK.getVerificationCode(code, phonEditText.getText().toString());
-        CountDown mc = new CountDown(6000, 1000, sensmsButton, bg);
+        CountDown mc = new CountDown(30000, 1000, sensmsButton, bg);
         mc.start();
     }
 

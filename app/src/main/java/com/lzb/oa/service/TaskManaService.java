@@ -8,6 +8,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lzb.oa.commons.Constant;
 import com.lzb.oa.service.response.ErrorResponse;
 import com.lzb.oa.ui.adapter.TaskManaAdapter;
@@ -42,8 +43,8 @@ public class TaskManaService {
      * @param lvTaskInfo
      */
     public void getTaskInfo(Context context,
-            final TaskManaAdapter taskManaAdapter, final ListView lvTaskInfo) {
-        String TASK_INFO_URL = Constant.URL + "task_info.json";
+            final TaskManaAdapter taskManaAdapter, final PullToRefreshListView lvTaskInfo, int pageNo) {
+        String TASK_INFO_URL = Constant.URL + "task_info.json?pageNo="+pageNo;
         mQueue = Volley.newRequestQueue(context);
         final ArrayList<HashMap<String, Object>> listTask = new ArrayList<>();
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(TASK_INFO_URL,

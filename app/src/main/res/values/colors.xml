@@ -32,6 +32,7 @@
     <color name="button_background_pressed_end">#fb812c</color>
     <color name="edit_text_background_start">#EFF6FF</color>
     <color name="edit_text_background_end">#FBFDFF</color>
+    <color name="background">#FF00BCD4</color>
     <color name="button_background_disabled_start">#7b7b7b</color>
     <color name="button_background_disabled_end">#646464</color>
     <color name="text_shadow">#000000</color>

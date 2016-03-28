@@ -30,6 +30,7 @@ import org.json.JSONObject;
  */
 public class RegisterActivity extends BaseActivity implements OnClickListener {
 
+    private final static String LOG_TAG = "RegisterActivity";
     private final static String REGISTER_URL = Constant.URL + "register.json";
 
     private EditText etRegisterEmpNickname;

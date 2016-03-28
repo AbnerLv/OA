@@ -35,4 +35,5 @@ dependencies {
     compile project(':smssdk')
     compile files('libs/bcprov-ext-jdk16-146.jar')
     compile files('libs/afinal_0.5_bin.jar')
+    compile project(':Android-PullToRefresh')
 }

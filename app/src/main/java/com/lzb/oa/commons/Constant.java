@@ -1,10 +1,9 @@
 package com.lzb.oa.commons;
 
+
 /**
- * 用于定义全局常量
- * 
- * @author lvzhenbin
- *
+ * 于定义全局常量
+ * Created by lvzhenbin on 2015/10/9.
  */
 
 public class Constant {

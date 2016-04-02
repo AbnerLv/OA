@@ -41,7 +41,7 @@ public class CustomerService {
      * @param customerInfoAdapter
      *            客户信息适配器
      * @param lvCustomerInfo
-     *            显示客户信息列表的ListViewa
+     *            显示客户信息列表的ListView
      */
     public void getCustomerInfo(Context context,
             final CustomerInfoAdapter customerInfoAdapter,

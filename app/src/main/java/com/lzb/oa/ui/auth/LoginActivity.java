@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 public class LoginActivity extends BaseActivity implements OnClickListener {
 
+    private final static  String LOG_TAG = "LoginActivity";
     private EditText tvUsername;
     private EditText tvPassword;
     private Button btn_login;

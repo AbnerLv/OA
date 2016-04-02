@@ -22,6 +22,7 @@ import cn.smssdk.SMSSDK;
 public class SMSRegisterActivity extends BaseActivity implements
         OnClickListener {
 
+    private final static String LOG_TAG = "SMSRegisterActivity";
     public String phString;
     public String code;
     private Spinner spDepartment;

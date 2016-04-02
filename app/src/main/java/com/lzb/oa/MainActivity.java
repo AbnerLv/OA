@@ -4,6 +4,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -16,96 +17,28 @@ import com.lzb.oa.ui.task.TaskManaFragment;
 
 /**
  * 项目的主Activity，所有的Fragment都嵌入在这里。
- * 
- * @author lvzhenbin
- * @date 2015-9-23
+ * Created by lvzhenbin on 2015/9/23.
  */
 public class MainActivity extends BaseActivity implements OnClickListener {
 
-    /**
-     * 用于展示消息的Fragment
-     */
-    private CustomerInfoFragment customerInfoFragment;
-
-    /**
-     * 用于展示联系人的Fragment
-     */
-    private ComplanyManaFragment complanyManaFragment;
-
-    /**
-     * 用于展示动态的Fragment
-     */
-    private TaskManaFragment taskManaFragment;
-
-    /**
-     * 用于展示设置的Fragment
-     */
-    private SettingFragment settingFragment;
-
-    /**
-     * 消息界面布局
-     */
-    private View taskLayout;
-
-    /**
-     * 联系人界面布局
-     */
-    private View contactsLayout;
-
-    /**
-     * 动态界面布局
-     */
-    private View newsLayout;
-
-    /**
-     * 设置界面布局
-     */
-    private View settingLayout;
-
-    /**
-     * 在Tab布局上显示消息图标的控件
-     */
-    private ImageView messageImage;
-
-    /**
-     * 在Tab布局上显示联系人图标的控件
-     */
-    private ImageView contactsImage;
-
-    /**
-     * 在Tab布局上显示动态图标的控件
-     */
-    private ImageView newsImage;
-
-    /**
-     * 在Tab布局上显示设置图标的控件
-     */
-    private ImageView settingImage;
-
-    /**
-     * 在Tab布局上显示消息标题的控件
-     */
-    private TextView messageText;
-
-    /**
-     * 在Tab布局上显示联系人标题的控件
-     */
-    private TextView contactsText;
-
-    /**
-     * 在Tab布局上显示动态标题的控件
-     */
-    private TextView newsText;
-
-    /**
-     * 在Tab布局上显示设置标题的控件
-     */
-    private TextView settingText;
-
-    /**
-     * 用于对Fragment进行管理
-     */
-    private FragmentManager fragmentManager;
+    private static final String TAG = "MainActivity";
+    private CustomerInfoFragment customerInfoFragment; //用于展示消息的Fragment
+    private ComplanyManaFragment complanyManaFragment;//用于展示联系人的Fragment
+    private TaskManaFragment taskManaFragment; //用于展示动态的Fragment
+    private SettingFragment settingFragment;  //用于展示设置的Fragment
+    private View taskLayout;   //消息界面布局
+    private View contactsLayout;  //联系人界面布局
+    private View newsLayout;  //动态界面布局
+    private View settingLayout;  //设置界面布局
+    private ImageView messageImage;  //在Tab布局上显示消息图标的控件
+    private ImageView contactsImage;  //在Tab布局上显示联系人图标的控件
+    private ImageView newsImage;  //在Tab布局上显示动态图标的控件
+    private ImageView settingImage;  //在Tab布局上显示设置图标的控件
+    private TextView messageText; //在Tab布局上显示消息标题的控件
+    private TextView contactsText;  //在Tab布局上显示联系人标题的控件
+    private TextView newsText; //在Tab布局上显示动态标题的控件
+    private TextView settingText;  //在Tab布局上显示设置标题的控件
+    private FragmentManager fragmentManager;//用于对Fragment进行管理
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,17 +101,16 @@ public class MainActivity extends BaseActivity implements OnClickListener {
      *            每个tab页对应的下标。0表示消息，1表示联系人，2表示动态，3表示设置。
      */
     private void setTabSelection(int index) {
-        // 每次选中之前先清楚掉上次的选中状态
-        clearSelection();
-        // 开启一个Fragment事务
+        clearSelection();// 每次选中之前先清楚掉上次的选中状态
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        // 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
-        hideFragments(transaction);
+
+        hideFragments(transaction);  // 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
         switch (index) {
         case 0:
             // 当点击了动态tab时，改变控件的图片和文字颜色
             messageImage.setImageResource(R.mipmap.message_selected);
             messageText.setTextColor(Color.BLUE);
+            Log.d(TAG,"taskManaFragment");
             if (taskManaFragment == null) {
                 // 如果taskManaFragment为空，则创建一个并添加到界面上
                 taskManaFragment = new TaskManaFragment();

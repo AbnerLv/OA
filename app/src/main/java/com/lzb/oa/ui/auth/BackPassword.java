@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 public class BackPassword extends BaseActivity implements OnClickListener {
 
+    private final static String LOG_TAG = "BackPassword";
     private final static String BACK_PASSWORD_URL = Constant.URL
             + "back_password.json";
     private EditText etBackEmpNo;

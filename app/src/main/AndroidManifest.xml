@@ -56,7 +56,7 @@
 
         <!-- 任务 -->
         <activity
-            android:name=".ui.task.TaskDetail"
+            android:name=".ui.task.TaskDetailActivity"
             android:screenOrientation="portrait"
             android:label="任务明细" >
         </activity>

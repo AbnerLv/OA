@@ -32,7 +32,7 @@ public class SettingTaskInfo extends BaseActivity {
             + "my_task.json";
 
     private ListView lvSettingTaskInfo;
-    private TaskManaAdapter taskManaAdapter = null;
+   // private TaskManaAdapter taskManaAdapter = null;
     private RequestQueue mQueue = null;
 
     public static void startSettingTaskInfo(Context context, String emp_no) {
@@ -57,12 +57,13 @@ public class SettingTaskInfo extends BaseActivity {
 
     private void init() {
         lvSettingTaskInfo = (ListView) findViewById(R.id.lv_setting_task_info);
-        taskManaAdapter = new TaskManaAdapter(this);
+        //taskManaAdapter = new TaskManaAdapter(this);
     }
 
     private void sendToServer(Context context) {
         final ArrayList<HashMap<String, Object>> listTask = new ArrayList<>();
         mQueue = Volley.newRequestQueue(context);
+        /*
         try {
             Intent intent = getIntent();
             JSONObject json = new JSONObject();
@@ -74,9 +75,7 @@ public class SettingTaskInfo extends BaseActivity {
 
                         @Override
                         public void onResponse(JSONArray response) {
-                            /**
-                             * 设置数据
-                             */
+
                             Log.e("TAG", response.toString());
                             for (int i = 0; i < response.length(); i++) {
                                 HashMap<String, Object> map = new HashMap<String, Object>();
@@ -127,6 +126,8 @@ public class SettingTaskInfo extends BaseActivity {
         } catch (JSONException e1) {
             e1.printStackTrace();
         }
+        */
+
     }
 
 

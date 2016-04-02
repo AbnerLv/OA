@@ -35,8 +35,7 @@ public class HttpUtils {
      * @throws ClientProtocolException
      */
     public static void httpPostMethod(String url, JSONObject json,
-            Handler handler) throws UnsupportedEncodingException, IOException,
-            ClientProtocolException {
+            Handler handler) throws  IOException {
 
         HttpParams params = new BasicHttpParams();
         // 设置连接超时时间

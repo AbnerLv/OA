@@ -67,6 +67,13 @@ public class TaskManaFragment extends Fragment {
         super.onResume();
     }
 
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        TaskManaService.getInstance().cancelPendingRequests();
+    }
+
     /**
      * 初始化
      */
@@ -80,8 +87,6 @@ public class TaskManaFragment extends Fragment {
     }
 
     private void initContentListView(){
-
-
         mListView.setMode(PullToRefreshBase.Mode.BOTH);
         mListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
@@ -103,7 +108,7 @@ public class TaskManaFragment extends Fragment {
 
     }
 
-    private void requestData() {
+    public void requestData() {
         TaskManaService.getInstance().getTaskInfos(getActivity(), new GetTaskInfosHandler() {
             @Override
             public void onSuccess(String taskInfos) {

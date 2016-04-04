@@ -12,31 +12,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.Request.Method;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
-import com.lzb.oa.commons.Constant;
+import com.lzb.oa.service.AuthService;
+import com.lzb.oa.service.handler.ForgetPasswordHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class BackPassword extends BaseActivity implements OnClickListener {
+public class BackPasswordActivity extends BaseActivity implements OnClickListener {
 
-    private final static String LOG_TAG = "BackPassword";
-    private final static String BACK_PASSWORD_URL = Constant.URL
-            + "back_password.json";
+    private final static String TAG = "BackPasswordActivity";
     private EditText etBackEmpNo;
     private EditText etBackPhoneNo;
     private EditText etBackIdentify;
     private Button btnBackSubmit;
     private Button btnBackReset;
 
-    private RequestQueue mQueue = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,38 +65,14 @@ public class BackPassword extends BaseActivity implements OnClickListener {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-                mQueue = Volley.newRequestQueue(getApplicationContext());
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                        Method.POST, BACK_PASSWORD_URL, json,
-                        new Response.Listener<JSONObject>() {
+                AuthService.getInstance().forgetPassword(getApplicationContext(),
+                        json, new ForgetPasswordHandler() {
                             @Override
-                            public void onResponse(JSONObject response) {
-                                Log.d("TAG", response.toString());
-                                Toast.makeText(BackPassword.this,
-                                        response.toString(), Toast.LENGTH_SHORT)
-                                        .show();
-                                try {
-                                    dialog(response.get("emp_password")
-                                            .toString());
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Log.e("TAG", error.getMessage(), error);
-                                Toast.makeText(
-                                        BackPassword.this,
-                                        "网络连接出错，请检查网络状况！"
-                                                + etBackEmpNo.getText()
-                                                        .toString(),
-                                        Toast.LENGTH_LONG).show();
+                            public void success(String password) {
+                                Log.e(TAG, password+"");
+                                dialog(password);
                             }
                         });
-                mQueue.add(jsonObjectRequest);
             }
 
             break;
@@ -141,9 +110,7 @@ public class BackPassword extends BaseActivity implements OnClickListener {
 
     /**
      * 弹出对话框
-     *
      * 用户名
-     * 
      * @param password
      *            密码
      */
@@ -155,7 +122,7 @@ public class BackPassword extends BaseActivity implements OnClickListener {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                Intent intent = new Intent(BackPassword.this,
+                Intent intent = new Intent(BackPasswordActivity.this,
                         LoginActivity.class);
                 startActivity(intent);
             }
@@ -171,5 +138,11 @@ public class BackPassword extends BaseActivity implements OnClickListener {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        AuthService.getInstance().cancelPendingRequests();
     }
 }

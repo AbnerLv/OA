@@ -1,6 +1,7 @@
 package com.lzb.oa.ui.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
@@ -8,7 +9,7 @@ import android.widget.TextView;
 import com.lzb.oa.R;
 import com.lzb.oa.commons.Period;
 import com.lzb.oa.entity.TaskInfo;
-import com.lzb.oa.ui.task.TaskDetail;
+import com.lzb.oa.ui.task.TaskDetailActivity;
 
 /**
  * Created by lvzhenbin on 2016/4/2.
@@ -53,11 +54,9 @@ public class TaskInfoItemView {
 
             @Override
             public void onClick(View v) {
-                TaskDetail.startTaskDetail(context, taskInfo.getRoomer_no(),  taskInfo.getRoomer_name(),
-                        taskInfo.getRoomer_sex(), taskInfo.getRoomer_phone_no(),  taskInfo.getRoomer_house_no(), taskInfo.getRoomer_date(),
-                        taskInfo.getRoomer_period(), taskInfo.getRoomer_rent(), taskInfo.getRoomer_complete(),
-                        taskInfo.getRoomer_emp_no(), taskInfo.getHouse_city(), taskInfo.getHouse_address());
-
+                Intent intent = new Intent(context,TaskDetailActivity.class);
+                intent.putExtra("task_data", taskInfo);
+                context.startActivity(intent);
             }
         });
 

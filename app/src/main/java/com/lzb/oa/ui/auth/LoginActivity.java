@@ -124,7 +124,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
         // 找回密码
         case R.id.tv_backpass:
-            Intent intent = new Intent(LoginActivity.this, BackPassword.class);
+            Intent intent = new Intent(LoginActivity.this, BackPasswordActivity.class);
             startActivity(intent);
             break;
 

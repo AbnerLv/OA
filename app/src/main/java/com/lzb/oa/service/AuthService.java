@@ -9,11 +9,13 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.lzb.oa.MainActivity;
 import com.lzb.oa.cache.EmpInfoCache;
 import com.lzb.oa.commons.Constant;
+import com.lzb.oa.service.handler.ForgetPasswordHandler;
 import com.lzb.oa.service.response.ErrorResponse;
 
 import org.json.JSONException;
@@ -28,6 +30,8 @@ import java.util.TimerTask;
 public class AuthService {
 
     public static AuthService instance;
+    private RequestQueue mRequestQueue;
+
 
     public static AuthService getInstance() {
         if (instance == null) {
@@ -102,6 +106,49 @@ public class AuthService {
                 context.startActivity(intent);
             }
         }, 3000);
+    }
+
+    /**
+     * 忘记密码
+     * @param context
+     * @param json
+     * @param forgetPasswordHandler
+     */
+    public void forgetPassword(final Context context, JSONObject json, final ForgetPasswordHandler forgetPasswordHandler){
+        String BACK_PASSWORD_URL = Constant.URL + "back_password.json";
+        mRequestQueue = Volley.newRequestQueue(context);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST, BACK_PASSWORD_URL, json,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+                        String password = response.get("emp_password")
+                                .toString();
+                            forgetPasswordHandler.success(password);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("TAG", error.getMessage(), error);
+                Toast.makeText( context,
+                        "网络连接出错，请检查网络状况！",Toast.LENGTH_LONG).show();
+            }
+        });
+        mRequestQueue.add(jsonObjectRequest);
+    }
+
+    /**
+     * 取消所有或部分未完成的网络请求
+     */
+    public void cancelPendingRequests(){
+        if(mRequestQueue != null){
+            mRequestQueue.cancelAll(new Object());
+        }
     }
 
 

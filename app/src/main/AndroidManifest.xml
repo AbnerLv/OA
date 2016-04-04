@@ -40,7 +40,7 @@
             android:theme="@style/ActionBarTheme">
         </activity>
         <activity
-            android:name=".ui.auth.BackPassword"
+            android:name=".ui.auth.BackPasswordActivity"
             android:screenOrientation="portrait"
             android:label="找回密码"
             android:theme="@style/ActionBarTheme">

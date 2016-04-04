@@ -15,7 +15,6 @@ public class EmpInfoCache {
         SharedPreferences sp = context.getSharedPreferences("OAEmpInfo",
                 context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-
         try {
             editor.putString("emp_nickname", resp.getString("emp_nickname"));
             editor.putString("emp_name", resp.getString("emp_name"));

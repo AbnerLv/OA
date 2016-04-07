@@ -73,7 +73,7 @@
 
         <!-- 设置 -->
         <activity
-            android:name=".ui.setting.SettingPerInfo"
+            android:name=".ui.setting.ModifyPerInfoActivity"
             android:screenOrientation="portrait"
             android:label="个人信息" >
         </activity>
@@ -83,23 +83,23 @@
             android:label="已领取任务" >
         </activity>
         <activity
-            android:name=".ui.setting.SettingAbout"
+            android:name=".ui.setting.SettingAboutActivity"
             android:screenOrientation="portrait"
             android:label="关于" >
         </activity>
         <activity
-            android:name=".ui.setting.SettingAboutRecommend"
+            android:name=".ui.setting.RecommendActivity"
             android:screenOrientation="portrait"
             android:label="应用介绍" >
         </activity>
         <activity
-            android:name=".ui.setting.SettingChangePass"
+            android:name=".ui.setting.ChangePasswdActivity"
             android:screenOrientation="portrait"
             android:label="修改密码"
             android:theme="@style/ActionBarTheme">
         </activity>
         <activity
-            android:name=".ui.setting.EditPerInfo"
+            android:name=".ui.setting.EditPerInfoActivity"
             android:screenOrientation="portrait"
             android:label="个人信息" >
         </activity>

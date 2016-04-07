@@ -7,10 +7,10 @@ import android.os.Bundle;
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
 
-public class SettingAboutRecommend extends BaseActivity {
+public class RecommendActivity extends BaseActivity {
 
     public static void startSettingAboutRecommend(Context context) {
-        Intent intent = new Intent(context, SettingAboutRecommend.class);
+        Intent intent = new Intent(context, RecommendActivity.class);
         context.startActivity(intent);
     }
 

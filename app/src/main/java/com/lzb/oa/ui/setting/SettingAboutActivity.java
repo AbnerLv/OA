@@ -14,14 +14,14 @@ import android.widget.TextView;
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
 
-public class SettingAbout extends BaseActivity implements OnClickListener {
+public class SettingAboutActivity extends BaseActivity implements OnClickListener {
 
     private RelativeLayout layoutSettingRecommend;
     private TextView tvSettingAboutVersion;
     private String version;
 
     public static void startSettingAbout(Context context) {
-        Intent intent = new Intent(context, SettingAbout.class);
+        Intent intent = new Intent(context, SettingAboutActivity.class);
         context.startActivity(intent);
     }
 
@@ -67,7 +67,7 @@ public class SettingAbout extends BaseActivity implements OnClickListener {
         switch (v.getId()) {
 
         case R.id.layout_setting_recommend:
-            SettingAboutRecommend.startSettingAboutRecommend(SettingAbout.this);
+            RecommendActivity.startSettingAboutRecommend(SettingAboutActivity.this);
             break;
 
         default:

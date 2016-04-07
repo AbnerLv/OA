@@ -1,6 +1,5 @@
 package com.lzb.oa.ui.auth;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -30,13 +29,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     private TextView tvNewuser;
     private SharedPreferences sp;
 
-    public static void startLoginActivity(Context context, String username,
-            String password) {
-        Intent intent = new Intent(context, LoginActivity.class);
-        intent.putExtra("username", username);
-        intent.putExtra("password", password);
-        context.startActivity(intent);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

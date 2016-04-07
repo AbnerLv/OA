@@ -34,7 +34,7 @@ public class SettingService {
      * 修改密码
      * 
      * @param context
-     *            SettingChangePass.java
+     *            ChangePasswdActivity.java
      * @param json
      *            username , password json 文件
      * @param username

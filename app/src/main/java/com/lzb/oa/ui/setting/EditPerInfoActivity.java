@@ -34,7 +34,7 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class EditPerInfo extends BaseActivity implements OnClickListener,
+public class EditPerInfoActivity extends BaseActivity implements OnClickListener,
         OnCheckedChangeListener {
 
 
@@ -66,7 +66,7 @@ public class EditPerInfo extends BaseActivity implements OnClickListener,
     private RequestQueue mQueueEdit = null;
 
     public static void startEditPerInfo(Context context) {
-        Intent intent = new Intent(context, EditPerInfo.class);
+        Intent intent = new Intent(context, EditPerInfoActivity.class);
         context.startActivity(intent);
     }
 
@@ -140,7 +140,7 @@ public class EditPerInfo extends BaseActivity implements OnClickListener,
     public void onClick(View v) {
         switch (v.getId()) {
         case R.id.et_per_info_birthday:
-            DateTimePickerDialog.dateDialogAll(EditPerInfo.this, calendar,
+            DateTimePickerDialog.dateDialogAll(EditPerInfoActivity.this, calendar,
                     etPerInfoBirthday);
             break;
 
@@ -175,7 +175,7 @@ public class EditPerInfo extends BaseActivity implements OnClickListener,
                                     if (success == 1) {
                                         dialog();
                                     } else {
-                                        Toast.makeText(EditPerInfo.this,
+                                        Toast.makeText(EditPerInfoActivity.this,
                                                 "修改个人信息失败，请耐心等待5秒后再次尝试",
                                                 Toast.LENGTH_SHORT).show();
                                     }
@@ -246,7 +246,7 @@ public class EditPerInfo extends BaseActivity implements OnClickListener,
             public void run() {
                 builder.dismiss();
                 t.cancel();
-                EditPerInfo.this.finish();
+                EditPerInfoActivity.this.finish();
             }
         }, 2000);
     }

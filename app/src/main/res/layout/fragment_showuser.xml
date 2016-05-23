@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@mipmap/per_info_bg"
+	android:orientation="vertical"
+	android:paddingBottom="@dimen/activity_vertical_margin"
+	android:paddingLeft="@dimen/activity_horizontal_margin"
+	android:paddingRight="@dimen/activity_horizontal_margin"
+	android:paddingTop="@dimen/activity_vertical_margin"
+	android:scrollbars="none">
+        
+        <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" >
+	        
+		    <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+		        android:orientation="horizontal" >
+		            
+			    <TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:text="用户名"
+					android:textSize="16sp"/>
+			        
+			    <TextView
+			        android:id="@+id/show_user_username"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="2"
+					android:textSize="16sp"
+			        android:singleLine="true" />
+		    
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="5dp"
+		        android:orientation="horizontal" >
+		            
+			    <TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:text="权    限"
+					android:textSize="16sp"/>
+			        
+			    <TextView
+			        android:id="@+id/show_user_root"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="2"
+					android:textSize="16sp"
+			        android:singleLine="true" />
+		    
+		    </LinearLayout>
+		    
+		    <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="5dp"
+		        android:orientation="horizontal" >
+		            
+			    <TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:textSize="16sp"
+					android:text="姓    名"/>
+			        
+			    <TextView
+			        android:id="@+id/show_staff_name"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="2"
+					android:textSize="16sp"
+			        android:singleLine="true" />
+		    
+		    </LinearLayout>
+		    
+		    <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="5dp"
+				
+		        android:orientation="horizontal" >
+		            
+			    <TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:textSize="16sp"
+					android:text="性    别"/>
+			        
+			    <TextView
+			        android:id="@+id/show_staff_gender"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="2"
+					android:textSize="16sp"
+			        android:singleLine="true" />
+		    
+		    </LinearLayout>
+		    
+		    <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="5dp"
+				
+		        android:orientation="horizontal" >
+		            
+			    <TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:textSize="16sp"
+					android:text="生    日"/>
+			        
+			    <TextView
+			        android:id="@+id/show_staff_birthday"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="2"
+					android:textSize="16sp"
+			        android:singleLine="true" />
+		    
+		    </LinearLayout>
+		    
+		    <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="5dp"
+		        android:orientation="horizontal" >
+		            
+			    <TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:textSize="16sp"
+					android:text="民    族"/>
+			        
+			    <TextView
+			        android:id="@+id/show_staff_nation"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="2"
+					android:textSize="16sp"
+			        android:singleLine="true" />
+		    
+		    </LinearLayout>
+		    
+		    <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="5dp"
+		        android:orientation="horizontal" >
+		            
+			    <TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:textSize="16sp"
+					android:text="住    址"/>
+			        
+			    <TextView
+			        android:id="@+id/show_staff_address"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="2"
+					android:textSize="16sp"
+			        android:singleLine="true" />
+		    
+		    </LinearLayout>
+		    
+		    <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="5dp"
+		        android:orientation="horizontal" >
+		            
+			    <TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:textSize="16sp"
+					android:text="手    机"/>
+			        
+			    <TextView
+			        android:id="@+id/show_staff_phone"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="2"
+					android:textSize="16sp"
+			        android:singleLine="true" />
+		    
+		    </LinearLayout>
+		    
+		    <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="5dp"
+		        android:orientation="horizontal" >
+		            
+			    <TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:textSize="16sp"
+					android:text="邮    件"/>
+			        
+			    <TextView
+			        android:id="@+id/show_staff_mail"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="2"
+					android:textSize="16sp"
+			        android:singleLine="true" />
+		    
+		    </LinearLayout>
+		
+		    <Button
+		        android:id="@+id/sign_in_button_updatingstaff"
+		        android:layout_width="match_parent"
+				android:text="修    改"
+				android:textSize="16sp"
+				android:layout_height="44dp"
+
+				/>
+		    
+		</LinearLayout>
+		    
+</ScrollView>

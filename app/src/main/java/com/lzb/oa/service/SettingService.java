@@ -93,7 +93,7 @@ public class SettingService {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                LoginActivity.startLoginActivity(context, username, password);
+               // LoginActivity.startLoginActivity(context, username, password);
             }
         });
         builder.setCancelable(false);

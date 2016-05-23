@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_meeting_theme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="主题会议"/>
+
+    <TextView
+        android:id="@+id/tv_meeting_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="2016-05-06"/>
+
+    <TextView
+        android:id="@+id/tv_meeting_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="今天回去请你饭，今天回去请你饭，今天回去请你饭，今天回去请你饭，今天回去请你饭"/>
+
+    <TextView
+        android:id="@+id/tv_meeting_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="513会议室"/>
+
+</LinearLayout>

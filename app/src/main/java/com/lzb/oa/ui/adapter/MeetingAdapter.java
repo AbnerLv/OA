@@ -2,12 +2,14 @@ package com.lzb.oa.ui.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.lzb.oa.entity.MeetingEntity;
+import com.lzb.oa.ui.complany.MeetingDetailActivity;
 import com.lzb.oa.ui.view.MeetingItemView;
 
 import java.util.List;

@@ -9,6 +9,7 @@ public class MeetingEntity implements Serializable {
 
     private String theme;
     private String time;
+    private String endTime;
     private String content;
     private String address;
 
@@ -42,5 +43,13 @@ public class MeetingEntity implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

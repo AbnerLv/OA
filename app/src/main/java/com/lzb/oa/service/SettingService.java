@@ -34,7 +34,7 @@ public class SettingService {
      * 修改密码
      * 
      * @param context
-     *            SettingChangePass.java
+     *            ChangePasswdActivity.java
      * @param json
      *            username , password json 文件
      * @param username
@@ -93,7 +93,7 @@ public class SettingService {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                LoginActivity.startLoginActivity(context, username, password);
+               // LoginActivity.startLoginActivity(context, username, password);
             }
         });
         builder.setCancelable(false);

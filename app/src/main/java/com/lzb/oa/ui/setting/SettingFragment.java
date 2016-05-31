@@ -1,6 +1,7 @@
 package com.lzb.oa.ui.setting;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,13 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lzb.oa.R;
-import com.lzb.oa.commons.Constant;
 import com.lzb.oa.ui.auth.LoginActivity;
 
 public class SettingFragment extends Fragment implements OnClickListener {
 
-    private final static String NICKNAME_URL = Constant.URL
-            + "get_nickname.json";
 
     private LinearLayout settingPerinfo;
     private LinearLayout settingTaskinfo;
@@ -72,7 +70,7 @@ public class SettingFragment extends Fragment implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
         case R.id.layout_perinfo:
-            SettingPerInfo.startSettingPerInfo(getActivity());
+            ModifyPerInfoActivity.startSettingPerInfo(getActivity());
             Toast.makeText(getActivity(), "个人信息", Toast.LENGTH_SHORT).show();
             break;
 
@@ -82,20 +80,22 @@ public class SettingFragment extends Fragment implements OnClickListener {
             break;
 
         case R.id.layout_about:
-            SettingAbout.startSettingAbout(getActivity());
+            SettingAboutActivity.startSettingAbout(getActivity());
             Toast.makeText(getActivity(), "关于", Toast.LENGTH_SHORT).show();
             break;
 
         case R.id.layout_change:
-            SettingChangePass.startSettingChangePass(getActivity());
+            Intent intent = new Intent(getActivity(), ChangePasswdActivity.class);
+            startActivity(intent);
             break;
 
         case R.id.layout_exit:
             SharedPreferences sp = getActivity().getSharedPreferences(
                     "OAEmpInfo", getActivity().MODE_PRIVATE);
             sp.edit().clear().commit();
-            LoginActivity.startLoginActivity(getActivity(), "", "");
             Toast.makeText(getActivity(), "退出", Toast.LENGTH_SHORT).show();
+            Intent intent1 = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent1);
             break;
 
         default:

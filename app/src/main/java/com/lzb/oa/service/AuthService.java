@@ -16,6 +16,7 @@ import com.lzb.oa.MainActivity;
 import com.lzb.oa.cache.EmpInfoCache;
 import com.lzb.oa.commons.Constant;
 import com.lzb.oa.service.handler.ForgetPasswordHandler;
+import com.lzb.oa.service.handler.RegisterHandler;
 import com.lzb.oa.service.response.ErrorResponse;
 
 import org.json.JSONException;
@@ -40,7 +41,33 @@ public class AuthService {
         return instance;
     }
 
-    public void register(final Context context, final JSONObject json) {
+    public void register(final Context context, final JSONObject json, final RegisterHandler handler) {
+        final String REGISTER_URL = Constant.URL + "register.json";
+        mRequestQueue = Volley.newRequestQueue(context);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                REGISTER_URL, json, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    int success = Integer.parseInt(response
+                            .getString("success"));
+                    if (success == 1) {
+                        handler.register(success);
+                    }
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("TAG", error.getMessage(), error);
+            }
+        });
+        mRequestQueue.add(jsonObjectRequest);
 
     }
 

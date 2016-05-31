@@ -18,7 +18,7 @@ import com.lzb.oa.service.SettingService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SettingChangePass extends BaseActivity implements OnClickListener {
+public class ChangePasswdActivity extends BaseActivity implements OnClickListener {
 
 
     private EditText etChangePassUsername;
@@ -28,10 +28,6 @@ public class SettingChangePass extends BaseActivity implements OnClickListener {
     private Button btnChangePassSubmit;
     private Button btnChangePassReset;
 
-    public static void startSettingChangePass(Context context) {
-        Intent intent = new Intent(context, SettingChangePass.class);
-        context.startActivity(intent);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +69,7 @@ public class SettingChangePass extends BaseActivity implements OnClickListener {
                     .trim();
             if (!password.equals(etChangePassConfirmPass.getText().toString()
                     .trim())) {
-                Toast.makeText(SettingChangePass.this, "两次输入的密码不正确，请重新输入！",
+                Toast.makeText(ChangePasswdActivity.this, "两次输入的密码不正确，请重新输入！",
                         Toast.LENGTH_SHORT).show();
                 etChangePassNewPass.getText().clear();
                 etChangePassConfirmPass.getText().clear();
@@ -87,7 +83,7 @@ public class SettingChangePass extends BaseActivity implements OnClickListener {
                         .trim());
                 json.put("newPass", password);
                 SettingService.getInstance().modifyPassword(
-                        SettingChangePass.this, json, username, password);
+                        ChangePasswdActivity.this, json, username, password);
 
             } catch (JSONException e) {
                 e.printStackTrace();

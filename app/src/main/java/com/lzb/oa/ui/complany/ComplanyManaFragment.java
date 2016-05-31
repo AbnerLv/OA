@@ -1,6 +1,7 @@
 package com.lzb.oa.ui.complany;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,8 +50,8 @@ public class ComplanyManaFragment extends Fragment implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
         case R.id.layout_complany_meeting:
-            Toast.makeText(getActivity(), "会议信息-未实现", Toast.LENGTH_SHORT)
-                    .show();
+            Intent intent = new Intent(getActivity(),MeetingActivity.class);
+            getActivity().startActivity(intent);
             break;
 
         case R.id.layout_complany_contacts:

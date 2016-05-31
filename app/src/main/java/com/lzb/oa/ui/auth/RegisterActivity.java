@@ -11,15 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
-import com.lzb.oa.commons.Constant;
+import com.lzb.oa.service.AuthService;
+import com.lzb.oa.service.handler.RegisterHandler;
 import com.lzb.oa.utils.CheckNullUtil;
 
 import org.json.JSONException;
@@ -27,11 +23,11 @@ import org.json.JSONObject;
 
 /**
  * 用户注册
+ * Created by lvzhenbin on 2015/10/23.
  */
 public class RegisterActivity extends BaseActivity implements OnClickListener {
 
-    private final static String LOG_TAG = "RegisterActivity";
-    private final static String REGISTER_URL = Constant.URL + "register.json";
+    private final static String TAG = "RegisterActivity";
 
     private EditText etRegisterEmpNickname;
     private EditText etRegisterEmpNo;
@@ -41,7 +37,6 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
     private Button btnRegisterSubmit;
     private Button btnRegisterReset;
 
-    private RequestQueue mQueue = null;
 
     public static void startRegisterActivity(Context context, String phoneNo) {
         Intent intent = new Intent(context, RegisterActivity.class);
@@ -54,7 +49,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_register);
-
+        Log.e(TAG,"RegisterActiv");
         init();
     }
 
@@ -147,43 +142,29 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
      * @param json
      */
     private void empRegister(final JSONObject json) {
-        mQueue = Volley.newRequestQueue(getApplicationContext());
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                REGISTER_URL, json, new Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            int success = Integer.parseInt(response
-                                    .getString("success"));
-                            if (success == 1) {
-                                String empNickname = json
-                                        .getString("empNickname");
-                                String pass = json.getString("pass");
-                                LoginActivity.startLoginActivity(
-                                        RegisterActivity.this, empNickname,
-                                        pass);
-                                Toast.makeText(RegisterActivity.this, "注册成功",
-                                        Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(RegisterActivity.this,
-                                        "注册失败,请联系管理员…", Toast.LENGTH_SHORT)
-                                        .show();
-                            }
-                        } catch (NumberFormatException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("TAG", error.getMessage(), error);
-                    }
-                });
-        mQueue.add(jsonObjectRequest);
+        AuthService.getInstance().register(getApplicationContext(), json, new RegisterHandler() {
+            @Override
+            public void register(int success) {
+                try {
+                    String nickname = json.getString("empNickname");
+                    String password = json.getString("pass");
+                    Toast.makeText(RegisterActivity.this, "注册成功",
+                            Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    intent.putExtra("username", nickname);
+                    intent.putExtra("password", password);
+                    startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        AuthService.getInstance().cancelPendingRequests();
+    }
 }

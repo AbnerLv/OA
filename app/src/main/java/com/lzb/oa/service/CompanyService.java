@@ -12,6 +12,7 @@ import com.android.volley.toolbox.Volley;
 import com.lzb.oa.commons.Constant;
 import com.lzb.oa.entity.MeetingEntity;
 import com.lzb.oa.service.handler.GetMeetingInfosHandler;
+import com.lzb.oa.service.handler.GetNoticeInfosHandler;
 import com.lzb.oa.service.response.ErrorResponse;
 import com.lzb.oa.ui.adapter.MeetingAdapter;
 
@@ -47,6 +48,26 @@ public class CompanyService {
                     @Override
                     public void onResponse(String response) {
                         getMeetingInfosHandler.onSuccess(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e(TAG, volleyError + "");
+            }
+        });
+        mQueue.add(mStringRequest);
+
+    }
+
+    public void getNoticeInfo(Context context, final GetNoticeInfosHandler getNoticeInfosHandler){
+        Volley.newRequestQueue(context);
+        final String MEETING_URL = Constant.URL + "get_notice_info.json";
+        mQueue = Volley.newRequestQueue(context);
+        StringRequest mStringRequest = new StringRequest(MEETING_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        getNoticeInfosHandler.onSuccess(response);
                     }
                 }, new Response.ErrorListener() {
             @Override

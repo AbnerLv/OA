@@ -60,8 +60,8 @@ public class ComplanyManaFragment extends Fragment implements OnClickListener {
             break;
 
         case R.id.layout_complany_noticts:
-            Toast.makeText(getActivity(), "企业公告-未实现", Toast.LENGTH_SHORT)
-                    .show();
+            Intent intentNoticts = new Intent(getActivity(),NoticeActivity.class);
+            getActivity().startActivity(intentNoticts);
             break;
 
         default:

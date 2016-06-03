@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_notice_detail_theme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="主体会议"
+        android:textSize="25dp"/>
+    <TextView
+        android:id="@+id/tv_notice_detail_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="2016-11-03"/>
+
+    <TextView
+        android:id="@+id/tv_notice_detail_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="今天五一劳动节，今天五一劳动节，今天五一劳动节，今天五一劳动节，今天五一劳动节，今天五一劳动节，今天五一劳动节，今天五一劳动节，"/>
+
+    <TextView
+        android:id="@+id/tv_notice_detail_empno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="right"
+        android:textColor="@color/red_textcolor"
+        android:textSize="23dp"
+        android:text="N1111"/>
+
+
+
+
+</LinearLayout>

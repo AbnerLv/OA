@@ -16,7 +16,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lzb.oa.R;
 import com.lzb.oa.commons.Constant;
-import com.lzb.oa.entity.TaskInfo;
+import com.lzb.oa.entity.TaskInfoEntity;
 import com.lzb.oa.service.TaskManaService;
 import com.lzb.oa.service.handler.GetTaskInfosHandler;
 import com.lzb.oa.ui.adapter.TaskManaAdapter;
@@ -32,7 +32,7 @@ public class TaskManaFragment extends Fragment {
     private static final String TAG = "TaskManaFragment";
     private TaskManaAdapter taskManaAdapter = null;
     private PullToRefreshListView mListView;
-    private final List<TaskInfo> mTaskInfoList = new ArrayList<>();
+    private final List<TaskInfoEntity> mTaskInfoList = new ArrayList<>();
     private String empNo = null;
 
 
@@ -113,7 +113,7 @@ public class TaskManaFragment extends Fragment {
             @Override
             public void onSuccess(String taskInfos) {
                 Gson mGson = new Gson();
-                List<TaskInfo> tempTaskInfo = mGson.fromJson(taskInfos, new TypeToken<List<TaskInfo>>() {
+                List<TaskInfoEntity> tempTaskInfo = mGson.fromJson(taskInfos, new TypeToken<List<TaskInfoEntity>>() {
                 }.getType());
                 mTaskInfoList.addAll(tempTaskInfo);
                 taskManaAdapter = new TaskManaAdapter(getActivity());

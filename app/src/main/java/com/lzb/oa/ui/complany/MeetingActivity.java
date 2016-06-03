@@ -8,7 +8,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lzb.oa.R;
 import com.lzb.oa.entity.MeetingEntity;
-import com.lzb.oa.entity.TaskInfo;
 import com.lzb.oa.service.CompanyService;
 import com.lzb.oa.service.handler.GetMeetingInfosHandler;
 import com.lzb.oa.ui.adapter.MeetingAdapter;

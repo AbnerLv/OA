@@ -70,6 +70,12 @@
         <activity android:name=".ui.complany.MeetingDetailActivity"
             android:label="会议详细信息"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.complany.NoticeActivity"
+            android:label="通知信息"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.complany.NoticeDetailActivity"
+            android:label="通知详细信息"
+            android:screenOrientation="portrait"/>
 
         <!-- 设置 -->
         <activity
@@ -77,7 +83,7 @@
             android:label="个人信息"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.setting.SettingTaskInfo"
+            android:name=".ui.setting.HaveTaskActivity"
             android:label="已领取任务"
             android:screenOrientation="portrait" />
         <activity

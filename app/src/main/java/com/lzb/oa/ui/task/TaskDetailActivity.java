@@ -16,7 +16,7 @@ import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
 import com.lzb.oa.commons.Constant;
 import com.lzb.oa.commons.Period;
-import com.lzb.oa.entity.TaskInfo;
+import com.lzb.oa.entity.TaskInfoEntity;
 import com.lzb.oa.service.TaskManaService;
 import com.lzb.oa.service.handler.DealTaskHandler;
 
@@ -62,7 +62,7 @@ public class TaskDetailActivity extends BaseActivity implements OnClickListener 
         btnTaskDetailOk = (Button) findViewById(R.id.btn_task_detail_ok);
 
         Intent intent = getIntent();
-        TaskInfo taskInfo = (TaskInfo) getIntent().getSerializableExtra("task_data");
+        TaskInfoEntity taskInfo = (TaskInfoEntity) getIntent().getSerializableExtra("task_data");
         Log.e(TAG, "intent before" + taskInfo.getRoomer_no());
         Log.e("intent", intent.toString());
         tvTaskDetailNo.setText("客户编号：" + taskInfo.getRoomer_no());

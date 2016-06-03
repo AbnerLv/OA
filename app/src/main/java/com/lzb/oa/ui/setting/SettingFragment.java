@@ -75,7 +75,7 @@ public class SettingFragment extends Fragment implements OnClickListener {
             break;
 
         case R.id.layout_taskinfo:
-            SettingTaskInfo.startSettingTaskInfo(getActivity(), empNo);
+            HaveTaskActivity.startSettingTaskInfo(getActivity(), empNo);
             Toast.makeText(getActivity(), "已领取任务", Toast.LENGTH_SHORT).show();
             break;
 

@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.lzb.oa.R;
 import com.lzb.oa.commons.Period;
-import com.lzb.oa.entity.TaskInfo;
+import com.lzb.oa.entity.TaskInfoEntity;
 import com.lzb.oa.ui.task.TaskDetailActivity;
 
 /**
@@ -16,7 +16,7 @@ import com.lzb.oa.ui.task.TaskDetailActivity;
  */
 public class TaskInfoItemView {
 
-    public static View getInstance(final Context context, View taskInfoView, final TaskInfo taskInfo) {
+    public static View getInstance(final Context context, View taskInfoView, final TaskInfoEntity taskInfo) {
         if (taskInfoView == null) {
             taskInfoView = View.inflate(context, R.layout.task_mana_item, null);
         }
@@ -56,6 +56,7 @@ public class TaskInfoItemView {
             public void onClick(View v) {
                 Intent intent = new Intent(context,TaskDetailActivity.class);
                 intent.putExtra("task_data", taskInfo);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });

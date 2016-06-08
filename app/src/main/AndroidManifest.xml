@@ -76,6 +76,9 @@
         <activity android:name=".ui.complany.NoticeDetailActivity"
             android:label="通知详细信息"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.complany.CompanyContactActivity"
+            android:label="公司通信录"
+            android:screenOrientation="portrait"/>
 
         <!-- 设置 -->
         <activity

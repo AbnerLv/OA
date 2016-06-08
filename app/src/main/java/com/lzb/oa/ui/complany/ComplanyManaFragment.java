@@ -55,8 +55,8 @@ public class ComplanyManaFragment extends Fragment implements OnClickListener {
             break;
 
         case R.id.layout_complany_contacts:
-            Toast.makeText(getActivity(), "企业通讯录-未实现", Toast.LENGTH_SHORT)
-                    .show();
+            Intent intentCompanyContac = new Intent(getActivity(),CompanyContactActivity.class);
+            getActivity().startActivity(intentCompanyContac);
             break;
 
         case R.id.layout_complany_noticts:

@@ -112,6 +112,12 @@ public class SettingService {
         builder.create().show();
     }
 
+    /**
+     * 获取已经领取的任务
+     * @param context
+     * @param empNo
+     * @param getHaveTasksHandler
+     */
     public void getHaveTasks(Context context, String empNo, final GetHaveTasksHandler getHaveTasksHandler){
         final String HAVE_TASK_INFO_URL = Constant.URL + "getHaveTasks.json?emp_no="+empNo;
         mRequestQueue = Volley.newRequestQueue(context);

@@ -108,8 +108,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         switch (index) {
         case 0:
             // 当点击了动态tab时，改变控件的图片和文字颜色
-            messageImage.setImageResource(R.mipmap.message_selected);
-            messageText.setTextColor(Color.BLUE);
+            messageImage.setImageResource(R.mipmap.main_selected);
+            messageText.setTextColor(Color.parseColor("#11cd6e"));
             Log.d(TAG,"taskManaFragment");
             if (taskManaFragment == null) {
                 // 如果taskManaFragment为空，则创建一个并添加到界面上
@@ -124,8 +124,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
         case 1:
             // 当点击了消息tab时，改变控件的图片和文字颜色
-            contactsImage.setImageResource(R.mipmap.contacts_selected);
-            contactsText.setTextColor(Color.BLUE);
+            contactsImage.setImageResource(R.mipmap.customer_selected);
+            contactsText.setTextColor(Color.parseColor("#11cd6e"));
             if (customerInfoFragment == null) {
                 // 如果customerInfoFragment为空，则创建一个并添加到界面上
                 customerInfoFragment = new CustomerInfoFragment();
@@ -140,8 +140,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
             break;
         case 2:
             // 当点击了联系人tab时，改变控件的图片和文字颜色
-            newsImage.setImageResource(R.mipmap.news_selected);
-            newsText.setTextColor(Color.BLUE);
+            newsImage.setImageResource(R.mipmap.company_selected);
+            newsText.setTextColor(Color.parseColor("#11cd6e"));
             if (complanyManaFragment == null) {
                 // 如果complanyManaFragment为空，则创建一个并添加到界面上
                 complanyManaFragment = new ComplanyManaFragment();
@@ -154,10 +154,9 @@ public class MainActivity extends BaseActivity implements OnClickListener {
             break;
 
         case 3:
-        default:
             // 当点击了设置tab时，改变控件的图片和文字颜色
             settingImage.setImageResource(R.mipmap.setting_selected);
-            settingText.setTextColor(Color.BLUE);
+            settingText.setTextColor(Color.parseColor("#11cd6e"));
             if (settingFragment == null) {
                 // 如果SettingFragment为空，则创建一个并添加到界面上
                 settingFragment = new SettingFragment();
@@ -168,6 +167,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                 transaction.show(settingFragment);
             }
             break;
+            default:break;
         }
         transaction.commit();
     }
@@ -176,14 +176,14 @@ public class MainActivity extends BaseActivity implements OnClickListener {
      * 清除掉所有的选中状态。
      */
     private void clearSelection() {
-        messageImage.setImageResource(R.mipmap.message_unselected);
-        messageText.setTextColor(Color.parseColor("#82858b"));
-        contactsImage.setImageResource(R.mipmap.contacts_unselected);
-        contactsText.setTextColor(Color.parseColor("#82858b"));
-        newsImage.setImageResource(R.mipmap.news_unselected);
-        newsText.setTextColor(Color.parseColor("#82858b"));
+        messageImage.setImageResource(R.mipmap.main_unselected);
+        messageText.setTextColor(Color.parseColor("#33475f"));
+        contactsImage.setImageResource(R.mipmap.customer_unselected);
+        contactsText.setTextColor(Color.parseColor("#33475f"));
+        newsImage.setImageResource(R.mipmap.company_unselected);
+        newsText.setTextColor(Color.parseColor("#33475f"));
         settingImage.setImageResource(R.mipmap.setting_unselected);
-        settingText.setTextColor(Color.parseColor("#82858b"));
+        settingText.setTextColor(Color.parseColor("#33475f"));
     }
 
     /**

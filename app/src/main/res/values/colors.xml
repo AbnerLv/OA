@@ -77,6 +77,7 @@
     <color name="cancel_btn_bg">#F4F1F3</color>
     <color name="confirm_layout_bg">#F8F7F8</color>
     <color name="abs__background_green">#ff1db747</color>
+    <color name="select_fragment_text">#11cd6e</color>
     <color name="abs__background_blue">#ff157dfa</color>
     <color name="abs__background_lightblue">#ff00b0c5</color>
     <color name="red_textcolor">#b57a7a</color>

@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@mipmap/message_unselected"/>
+                    android:src="@mipmap/main_unselected"/>
 
                 <TextView
                     android:id="@+id/task_text"
@@ -62,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@mipmap/contacts_unselected"/>
+                    android:src="@mipmap/customer_unselected"/>
 
                 <TextView
                     android:id="@+id/customer_text"
@@ -91,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@mipmap/news_unselected"/>
+                    android:src="@mipmap/company_unselected"/>
 
                 <TextView
                     android:id="@+id/company_text"

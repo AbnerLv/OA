@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/scheduled_tasks"/>
+                android:src="@mipmap/clock"/>
 
             <TextView
                 android:id="@+id/tv_taskinfo"
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/change_pass"/>
+                android:src="@mipmap/edit"/>
 
             <TextView
                 android:id="@+id/tv_change_pass"

@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.auth.LoginActivity"
+            android:name=".ui.activity.UserLoginActivity"
             android:label="登录"
             android:screenOrientation="portrait" />
         <activity
@@ -38,7 +38,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/ActionBarTheme" />
         <activity
-            android:name=".ui.auth.BackPasswordActivity"
+            android:name=".ui.auth.ForgetPasswordActivity"
             android:label="找回密码"
             android:screenOrientation="portrait"
             android:theme="@style/ActionBarTheme" />
@@ -82,7 +82,7 @@
 
         <!-- 设置 -->
         <activity
-            android:name=".ui.setting.ModifyPerInfoActivity"
+            android:name=".ui.setting.ShowPerInfoActivity"
             android:label="个人信息"
             android:screenOrientation="portrait" />
         <activity
@@ -98,7 +98,7 @@
             android:label="应用介绍"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.setting.ChangePasswdActivity"
+            android:name=".ui.setting.ModifyPasswordActivity"
             android:label="修改密码"
             android:screenOrientation="portrait"
             android:theme="@style/ActionBarTheme" />

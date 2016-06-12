@@ -14,8 +14,9 @@ import android.widget.Toast;
 
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
-import com.lzb.oa.service.AuthService;
+import com.lzb.oa.service.UserService;
 import com.lzb.oa.service.handler.RegisterHandler;
+import com.lzb.oa.ui.activity.UserLoginActivity;
 import com.lzb.oa.utils.CheckNullUtil;
 
 import org.json.JSONException;
@@ -142,7 +143,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
      * @param json
      */
     private void empRegister(final JSONObject json) {
-        AuthService.getInstance().register(getApplicationContext(), json, new RegisterHandler() {
+        UserService.getInstance().register(getApplicationContext(), json, new RegisterHandler() {
             @Override
             public void register(int success) {
                 try {
@@ -150,7 +151,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
                     String password = json.getString("pass");
                     Toast.makeText(RegisterActivity.this, "注册成功",
                             Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), UserLoginActivity.class);
                     intent.putExtra("username", nickname);
                     intent.putExtra("password", password);
                     startActivity(intent);
@@ -165,6 +166,6 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
     @Override
     protected void onStop() {
         super.onStop();
-        AuthService.getInstance().cancelPendingRequests();
+        UserService.getInstance().cancelPendingRequests();
     }
 }

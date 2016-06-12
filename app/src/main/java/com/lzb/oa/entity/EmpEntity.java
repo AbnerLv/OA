@@ -127,8 +127,6 @@ public class EmpEntity implements Serializable{
         this.emp_password = emp_password;
     }
     public EmpEntity() {
-        super();
-        // TODO Auto-generated constructor stub
     }
     public EmpEntity(String emp_nickname, String emp_name,
                      String emp_sex, String emp_age, String emp_phone_no,
@@ -154,5 +152,16 @@ public class EmpEntity implements Serializable{
         this.emp_password = emp_password;
     }
 
-
+    public EmpEntity(String emp_nickname, String emp_name, String emp_sex, String emp_age, String emp_phone_no, String emp_email, String emp_birthday, String emp_nation, String emp_city, String emp_address) {
+        this.emp_nickname = emp_nickname;
+        this.emp_name = emp_name;
+        this.emp_sex = emp_sex;
+        this.emp_age = emp_age;
+        this.emp_phone_no = emp_phone_no;
+        this.emp_email = emp_email;
+        this.emp_birthday = emp_birthday;
+        this.emp_nation = emp_nation;
+        this.emp_city = emp_city;
+        this.emp_address = emp_address;
+    }
 }

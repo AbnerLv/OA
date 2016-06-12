@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
-import com.lzb.oa.ui.auth.LoginActivity;
+import com.lzb.oa.ui.activity.UserLoginActivity;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
@@ -76,7 +76,7 @@ public class Temp extends BaseActivity implements OnClickListener,
                                 .show();
                         if (success == 0) {
                             Intent intent = new Intent(Temp.this,
-                                    LoginActivity.class);
+                                    UserLoginActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putString("empNo", json.getString("empNo"));
                             bundle.putString("pass", json.getString("pass"));

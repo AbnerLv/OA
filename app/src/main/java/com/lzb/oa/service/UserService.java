@@ -15,7 +15,9 @@ import com.android.volley.toolbox.Volley;
 import com.lzb.oa.MainActivity;
 import com.lzb.oa.cache.EmpInfoCache;
 import com.lzb.oa.commons.Constant;
+import com.lzb.oa.service.handler.CheckLoginHandler;
 import com.lzb.oa.service.handler.ForgetPasswordHandler;
+import com.lzb.oa.service.handler.ModifyPerInfoHandler;
 import com.lzb.oa.service.handler.RegisterHandler;
 import com.lzb.oa.service.response.ErrorResponse;
 
@@ -28,15 +30,15 @@ import java.util.TimerTask;
 /**
  * Created by lvzhenbin on 2015/10/4.
  */
-public class AuthService {
+public class UserService {
 
-    public static AuthService instance;
+    public static UserService instance;
     private RequestQueue mRequestQueue;
 
 
-    public static AuthService getInstance() {
+    public static UserService getInstance() {
         if (instance == null) {
-            instance = new AuthService();
+            instance = new UserService();
         }
         return instance;
     }
@@ -73,107 +75,90 @@ public class AuthService {
 
     /**
      * 登陆验证
-     * 
-     * @param json
-     *            username,password 封装json文件
-     * @param context
-     *            LoginActivity.this
      */
-    public void checkLogin(JSONObject json, final Context context) {
-        String LOGIN_URL = Constant.URL + "login.json";
-        RequestQueue mQueue = Volley.newRequestQueue(context);
+    public void checkLogin(final Context context, JSONObject json, final CheckLoginHandler checkLoginHandler) {
+        String LOGIN_URL = Constant.URL + "userLogin.json";
+        mRequestQueue = Volley.newRequestQueue(context);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST, LOGIN_URL, json,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("TAG", response.toString());
-                        String password = null;
                         try {
-                            password = response.getString("emp_password")
-                                    .toString();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        if (password == null || "0".equals(password)) {
-                            Toast.makeText(context, "输入的用户名或密码有错",
-                                    Toast.LENGTH_LONG).show();
-                        } else {
+                            String password = response.getString("emp_password").toString();
+                            checkLoginHandler.onSuccess(password);
                             EmpInfoCache.cacheEmpInfo(context, response);
-                            progressDialog(context);
+                        } catch (JSONException e) {
+                            Toast.makeText(context, ""+e.getMessage(),Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new ErrorResponse(context));
-
-        mQueue.add(jsonObjectRequest);
+        mRequestQueue.add(jsonObjectRequest);
     }
 
-    /**
-     * 登陆进程框
-     * 
-     * @param context
-     *            LoginActivity.this
-     */
-    private void progressDialog(final Context context) {
-        final ProgressDialog proDialog = new ProgressDialog(context);
-        proDialog.setTitle("验证中");
-        proDialog.setMessage("正在登陆，请稍后…");
-        proDialog.setIndeterminate(true);
-        proDialog.setCancelable(false);
-        proDialog.show();
-
-        final Timer t = new Timer();
-        t.schedule(new TimerTask() {
-
-            @Override
-            public void run() {
-                proDialog.dismiss();
-                t.cancel();
-                Intent intent = new Intent(context, MainActivity.class);
-                context.startActivity(intent);
-            }
-        }, 3000);
-    }
 
     /**
      * 忘记密码
+     *
      * @param context
      * @param json
      * @param forgetPasswordHandler
      */
-    public void forgetPassword(final Context context, JSONObject json, final ForgetPasswordHandler forgetPasswordHandler){
-        String BACK_PASSWORD_URL = Constant.URL + "back_password.json";
+    public void forgetPassword(final Context context, JSONObject json, final ForgetPasswordHandler forgetPasswordHandler) {
+        String BACK_PASSWORD_URL = Constant.URL + "forgetPassword.json";
         mRequestQueue = Volley.newRequestQueue(context);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.POST, BACK_PASSWORD_URL, json,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BACK_PASSWORD_URL, json,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try{
-                        String password = response.get("emp_password")
-                                .toString();
+                        try {
+                            String password = response.get("message").toString();
                             forgetPasswordHandler.success(password);
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            Toast.makeText(context, e.getMessage() + "", Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("TAG", error.getMessage(), error);
-                Toast.makeText( context,
-                        "网络连接出错，请检查网络状况！",Toast.LENGTH_LONG).show();
+                Toast.makeText(context, error.getMessage() + "", Toast.LENGTH_LONG).show();
             }
         });
         mRequestQueue.add(jsonObjectRequest);
     }
 
     /**
+     * 修改个人信息
+     *
+     */
+    public void modifyPerInfo(final Context context, JSONObject json, final ModifyPerInfoHandler modifyPerInfoHandler) {
+        String MODIFY_PASSWORD_URL = Constant.URL + "modifyPerInfo.json";
+        mRequestQueue = Volley.newRequestQueue(context);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                MODIFY_PASSWORD_URL, json, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    int code = response.getInt("code");
+                    modifyPerInfoHandler.onSuccess(code);
+                } catch (Exception e) {
+                    Toast.makeText(context,e.getMessage()+"",Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            }
+        }, new ErrorResponse(context));
+
+        mRequestQueue.add(jsonObjectRequest);
+
+    }
+
+
+    /**
      * 取消所有或部分未完成的网络请求
      */
-    public void cancelPendingRequests(){
-        if(mRequestQueue != null){
+    public void cancelPendingRequests() {
+        if (mRequestQueue != null) {
             mRequestQueue.cancelAll(new Object());
         }
     }

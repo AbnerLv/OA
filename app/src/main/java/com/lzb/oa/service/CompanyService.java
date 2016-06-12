@@ -6,23 +6,14 @@ import android.util.Log;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.lzb.oa.commons.Constant;
-import com.lzb.oa.entity.MeetingEntity;
 import com.lzb.oa.service.handler.GetAllContactersHandler;
 import com.lzb.oa.service.handler.GetDepartmentsHandler;
 import com.lzb.oa.service.handler.GetMeetingInfosHandler;
 import com.lzb.oa.service.handler.GetNoticeInfosHandler;
-import com.lzb.oa.service.response.ErrorResponse;
-import com.lzb.oa.ui.adapter.MeetingAdapter;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 
 /**

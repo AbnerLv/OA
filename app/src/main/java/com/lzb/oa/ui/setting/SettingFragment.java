@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lzb.oa.R;
-import com.lzb.oa.ui.auth.LoginActivity;
+import com.lzb.oa.ui.activity.UserLoginActivity;
 
 public class SettingFragment extends Fragment implements OnClickListener {
 
@@ -70,7 +70,7 @@ public class SettingFragment extends Fragment implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
         case R.id.layout_perinfo:
-            ModifyPerInfoActivity.startSettingPerInfo(getActivity());
+            ShowPerInfoActivity.startSettingPerInfo(getActivity());
             Toast.makeText(getActivity(), "个人信息", Toast.LENGTH_SHORT).show();
             break;
 
@@ -85,7 +85,7 @@ public class SettingFragment extends Fragment implements OnClickListener {
             break;
 
         case R.id.layout_change:
-            Intent intent = new Intent(getActivity(), ChangePasswdActivity.class);
+            Intent intent = new Intent(getActivity(), ModifyPasswordActivity.class);
             startActivity(intent);
             break;
 
@@ -94,7 +94,7 @@ public class SettingFragment extends Fragment implements OnClickListener {
                     "OAEmpInfo", getActivity().MODE_PRIVATE);
             sp.edit().clear().commit();
             Toast.makeText(getActivity(), "退出", Toast.LENGTH_SHORT).show();
-            Intent intent1 = new Intent(getActivity(), LoginActivity.class);
+            Intent intent1 = new Intent(getActivity(), UserLoginActivity.class);
             startActivity(intent1);
             break;
 

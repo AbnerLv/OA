@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
 
-public class ModifyPerInfoActivity extends BaseActivity implements OnClickListener {
+public class ShowPerInfoActivity extends BaseActivity implements OnClickListener {
 
 
     private TextView tvPerInfoNickname;
@@ -35,7 +35,7 @@ public class ModifyPerInfoActivity extends BaseActivity implements OnClickListen
 
 
     public static void startSettingPerInfo(Context context) {
-        Intent intent = new Intent(context, ModifyPerInfoActivity.class);
+        Intent intent = new Intent(context, ShowPerInfoActivity.class);
         context.startActivity(intent);
     }
 
@@ -135,7 +135,7 @@ public class ModifyPerInfoActivity extends BaseActivity implements OnClickListen
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.per_info_edit:
-            EditPerInfoActivity.startEditPerInfo(ModifyPerInfoActivity.this);
+            EditPerInfoActivity.startEditPerInfo(ShowPerInfoActivity.this);
             break;
         case R.id.home:
             finish();

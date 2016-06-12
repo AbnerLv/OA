@@ -22,9 +22,13 @@ import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
 import com.lzb.oa.commons.Constant;
+import com.lzb.oa.entity.EmpEntity;
+import com.lzb.oa.service.UserService;
+import com.lzb.oa.service.handler.ModifyPerInfoHandler;
 import com.lzb.oa.utils.DateTimePickerDialog;
 
 import org.json.JSONException;
@@ -110,8 +114,6 @@ public class EditPerInfoActivity extends BaseActivity implements OnClickListener
         SharedPreferences sp = getSharedPreferences("OAEmpInfo", 0);
         etPerInfoNickname.setText(sp.getString("emp_nickname", null));
         etPerInfoName.setText(sp.getString("emp_name", null));
-        Toast.makeText(getApplicationContext(), sp.getString("emp_name", null),
-                Toast.LENGTH_LONG).show();
         if (radioPerInfoMale.getText().toString().trim()
                 .equals(sp.getString("emp_sex", null))) {
             radioPerInfoMale.setChecked(true);
@@ -145,63 +147,48 @@ public class EditPerInfoActivity extends BaseActivity implements OnClickListener
             break;
 
         case R.id.btn_edit_per_info_submit:
-            try {
-                JSONObject json = new JSONObject();
-                json.put("nickname", etPerInfoNickname.getText().toString()
-                        .trim());
-                json.put("name", etPerInfoName.getText().toString().trim());
-                json.put("sex", sex);
-                json.put("age", etPerInfoAge.getText().toString().trim());
-                json.put("phoneNo", etPerInfoPhoneNo.getText().toString()
-                        .trim());
-                json.put("email", etPerInfoEmail.getText().toString().trim());
-                json.put("empNo", etPerInfoEmpNo.getText().toString().trim());
-                json.put("birthday", etPerInfoBirthday.getText().toString()
-                        .trim());
-                json.put("nation", etPerInfoNation.getText().toString().trim());
-                json.put("city", etPerInfoCity.getText().toString().trim());
-                json.put("address", etPerInfoAddress.getText().toString()
-                        .trim());
-
-                mQueueEdit = Volley.newRequestQueue(getApplicationContext());
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                        EDIT_PER_INFO_URL, json, new Listener<JSONObject>() {
-
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    int success = Integer.parseInt(response
-                                            .getString("success"));
-                                    if (success == 1) {
-                                        dialog();
-                                    } else {
-                                        Toast.makeText(EditPerInfoActivity.this,
-                                                "修改个人信息失败，请耐心等待5秒后再次尝试",
-                                                Toast.LENGTH_SHORT).show();
-                                    }
-                                } catch (NumberFormatException e) {
-                                    e.printStackTrace();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, new ErrorListener() {
-
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-
-                            }
-                        });
-                mQueueEdit.add(jsonObjectRequest);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            modifyPerInfo();
             break;
 
         default:
             break;
         }
 
+    }
+
+    private void modifyPerInfo(){
+        try {
+
+            String emp_nickname =  etPerInfoNickname.getText().toString();
+            String emp_name = etPerInfoName.getText().toString();
+            String emp_age = etPerInfoAge.getText().toString();
+            String emp_phone_no = etPerInfoPhoneNo.getText().toString();
+            String emp_email = etPerInfoEmail.getText().toString().trim();
+            String emp_birthday = etPerInfoBirthday.getText().toString();
+            String emp_nation = etPerInfoNation.getText().toString().trim();
+            String emp_city = etPerInfoCity.getText().toString().trim();
+            String emp_address = etPerInfoAddress.getText().toString();
+            EmpEntity empEntity = new EmpEntity(emp_name,emp_nickname,
+                    sex,emp_age,emp_phone_no, emp_email,emp_birthday,emp_nation,
+                    emp_city,emp_address);
+            Gson gson = new Gson();
+            String gJosn = gson.toJson(empEntity);
+            JSONObject json = new JSONObject(gJosn);
+            UserService.getInstance().modifyPerInfo(getApplicationContext(), json, new ModifyPerInfoHandler() {
+                @Override
+                public void onSuccess(int code) {
+                    if (code > 0) {
+                        dialog();
+                    } else {
+                        Toast.makeText(EditPerInfoActivity.this,
+                                "修改个人信息失败，请耐心等待5秒后再次尝试",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        } catch (JSONException e) {
+            Toast.makeText(getApplicationContext(),e.getMessage()+"",Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

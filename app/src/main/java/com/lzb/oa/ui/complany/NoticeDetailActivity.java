@@ -18,7 +18,7 @@ public class NoticeDetailActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.notice_detail);
+        setContentView(R.layout.company_notice_detail);
         init();
     }
 

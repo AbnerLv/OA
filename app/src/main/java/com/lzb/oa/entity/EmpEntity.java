@@ -152,7 +152,7 @@ public class EmpEntity implements Serializable{
         this.emp_password = emp_password;
     }
 
-    public EmpEntity(String emp_nickname, String emp_name, String emp_sex, String emp_age, String emp_phone_no, String emp_email, String emp_birthday, String emp_nation, String emp_city, String emp_address) {
+    public EmpEntity(String emp_nickname, String emp_name, String emp_sex, String emp_age, String emp_phone_no, String emp_email, String emp_birthday, String emp_nation, String emp_city, String emp_address, String emp_no) {
         this.emp_nickname = emp_nickname;
         this.emp_name = emp_name;
         this.emp_sex = emp_sex;
@@ -163,5 +163,6 @@ public class EmpEntity implements Serializable{
         this.emp_nation = emp_nation;
         this.emp_city = emp_city;
         this.emp_address = emp_address;
+        this.emp_no = emp_no;
     }
 }

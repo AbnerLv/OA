@@ -2,6 +2,7 @@ package com.lzb.oa.ui.complany;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -25,7 +26,7 @@ public class MeetingActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.meeting_list);
+        setContentView(R.layout.company_meeting_list);
         init();
     }
 
@@ -45,5 +46,14 @@ public class MeetingActivity extends Activity {
                 meettingListView.setAdapter(adapter);
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

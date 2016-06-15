@@ -1,4 +1,4 @@
-package com.lzb.oa.ui.setting;
+package com.lzb.oa.ui.activity;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -16,16 +16,9 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
-import com.lzb.oa.commons.Constant;
 import com.lzb.oa.entity.EmpEntity;
 import com.lzb.oa.service.UserService;
 import com.lzb.oa.service.handler.ModifyPerInfoHandler;
@@ -40,10 +33,6 @@ import java.util.TimerTask;
 
 public class EditPerInfoActivity extends BaseActivity implements OnClickListener,
         OnCheckedChangeListener {
-
-
-    private final static String EDIT_PER_INFO_URL = Constant.URL
-            + "edit_per_info.json";
 
     private EditText etPerInfoNickname;
     private EditText etPerInfoName;
@@ -66,8 +55,7 @@ public class EditPerInfoActivity extends BaseActivity implements OnClickListener
 
     private Calendar calendar = Calendar.getInstance();
     private String sex = null;
-
-    private RequestQueue mQueueEdit = null;
+    private String empNo = null;
 
     public static void startEditPerInfo(Context context) {
         Intent intent = new Intent(context, EditPerInfoActivity.class);
@@ -114,6 +102,8 @@ public class EditPerInfoActivity extends BaseActivity implements OnClickListener
         SharedPreferences sp = getSharedPreferences("OAEmpInfo", 0);
         etPerInfoNickname.setText(sp.getString("emp_nickname", null));
         etPerInfoName.setText(sp.getString("emp_name", null));
+        empNo = sp.getString("emp_no", null);
+
         if (radioPerInfoMale.getText().toString().trim()
                 .equals(sp.getString("emp_sex", null))) {
             radioPerInfoMale.setChecked(true);
@@ -138,28 +128,28 @@ public class EditPerInfoActivity extends BaseActivity implements OnClickListener
         etPerInfoCity.setText(sp.getString("emp_city", null));
         etPerInfoAddress.setText(sp.getString("emp_address", null));
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-        case R.id.et_per_info_birthday:
-            DateTimePickerDialog.dateDialogAll(EditPerInfoActivity.this, calendar,
-                    etPerInfoBirthday);
-            break;
+            case R.id.et_per_info_birthday:
+                DateTimePickerDialog.dateDialogAll(EditPerInfoActivity.this, calendar,
+                        etPerInfoBirthday);
+                break;
 
-        case R.id.btn_edit_per_info_submit:
-            modifyPerInfo();
-            break;
+            case R.id.btn_edit_per_info_submit:
+                modifyPerInfo();
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
 
     }
 
-    private void modifyPerInfo(){
+    private void modifyPerInfo() {
         try {
-
-            String emp_nickname =  etPerInfoNickname.getText().toString();
+            String emp_nickname = etPerInfoNickname.getText().toString();
             String emp_name = etPerInfoName.getText().toString();
             String emp_age = etPerInfoAge.getText().toString();
             String emp_phone_no = etPerInfoPhoneNo.getText().toString();
@@ -168,9 +158,9 @@ public class EditPerInfoActivity extends BaseActivity implements OnClickListener
             String emp_nation = etPerInfoNation.getText().toString().trim();
             String emp_city = etPerInfoCity.getText().toString().trim();
             String emp_address = etPerInfoAddress.getText().toString();
-            EmpEntity empEntity = new EmpEntity(emp_name,emp_nickname,
-                    sex,emp_age,emp_phone_no, emp_email,emp_birthday,emp_nation,
-                    emp_city,emp_address);
+            EmpEntity empEntity = new EmpEntity(emp_nickname, emp_name,
+                    sex, emp_age, emp_phone_no, emp_email, emp_birthday, emp_nation,
+                    emp_city, emp_address, empNo);
             Gson gson = new Gson();
             String gJosn = gson.toJson(empEntity);
             JSONObject json = new JSONObject(gJosn);
@@ -187,22 +177,23 @@ public class EditPerInfoActivity extends BaseActivity implements OnClickListener
                 }
             });
         } catch (JSONException e) {
-            Toast.makeText(getApplicationContext(),e.getMessage()+"",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), e.getMessage() + "", Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case R.id.home:
-            finish();
-            break;
+            case android.R.id.home:
+                finish();
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         if (checkedId == R.id.radio_per_info_male) {

@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="昵   称："
+                android:text="昵       称："
                 android:textSize="@dimen/activity_text_size"/>
 
             <EditText
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="员工号："
+                android:text="员  工  号："
                 android:textSize="@dimen/activity_text_size"/>
 
             <EditText
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="员工姓名"
+                android:text="员工姓名："
                 android:textSize="@dimen/activity_text_size"/>
 
             <EditText
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="密  码："
+                android:text="密        码："
                 android:textSize="@dimen/activity_text_size"/>
 
             <EditText

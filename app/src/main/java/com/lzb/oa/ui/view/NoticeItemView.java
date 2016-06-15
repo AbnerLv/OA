@@ -17,7 +17,7 @@ public class NoticeItemView {
 
     public static View getInstance(final Context context, View noticeView,final NoticeEntity notice) {
         if (noticeView == null) {
-            noticeView = View.inflate(context, R.layout.notice_list_item, null);
+            noticeView = View.inflate(context, R.layout.company_notice_list_item, null);
         }
 
         TextView noticeThemeView = ViewHolder.findViewById(noticeView, R.id.tv_notice_theme);

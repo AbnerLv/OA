@@ -6,9 +6,12 @@
 
 
     <ListView
-        android:id="@+id/lv_meeting_info"
+        android:id="@+id/lv_notice_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"
         android:dividerHeight="1dp" />
 
 

@@ -3,6 +3,7 @@ package com.lzb.oa.ui.setting;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import java.util.List;
 
 public class HaveTaskActivity extends BaseActivity {
 
+    private static final int REQUEST_CODE = 4;
 
     private ListView lvHaveTaskInfo;
     private TaskManaAdapter taskManaAdapter;
@@ -70,5 +72,20 @@ public class HaveTaskActivity extends BaseActivity {
         super.onStop();
         SettingService.getInstance().cancelPendingRequests();
     }
+
+    // ActionBar点击事件
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }

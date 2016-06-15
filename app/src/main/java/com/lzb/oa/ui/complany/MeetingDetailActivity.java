@@ -19,7 +19,7 @@ public class MeetingDetailActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.meeting_detail);
+        setContentView(R.layout.company_meeting_detail);
         init();
     }
 

@@ -2,6 +2,7 @@ package com.lzb.oa.ui.complany;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 
@@ -28,7 +29,7 @@ public class NoticeActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.notice_list);
+        setContentView(R.layout.company_notice_list);
         init();
     }
 
@@ -48,5 +49,14 @@ public class NoticeActivity extends Activity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

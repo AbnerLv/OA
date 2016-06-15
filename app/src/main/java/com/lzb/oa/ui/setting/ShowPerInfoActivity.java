@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
+import com.lzb.oa.ui.activity.EditPerInfoActivity;
 
 public class ShowPerInfoActivity extends BaseActivity implements OnClickListener {
 
@@ -137,7 +138,7 @@ public class ShowPerInfoActivity extends BaseActivity implements OnClickListener
         case R.id.per_info_edit:
             EditPerInfoActivity.startEditPerInfo(ShowPerInfoActivity.this);
             break;
-        case R.id.home:
+        case android.R.id.home:
             finish();
             break;
 

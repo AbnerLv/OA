@@ -1,6 +1,5 @@
 package com.lzb.oa.ui.view;
 
-import android.app.Activity;
 import android.content.Context;
 
 import android.content.Intent;
@@ -9,7 +8,7 @@ import android.widget.TextView;
 
 import com.lzb.oa.R;
 import com.lzb.oa.entity.MeetingEntity;
-import com.lzb.oa.ui.complany.MeetingDetailActivity;
+import com.lzb.oa.ui.activity.MeetingDetailActivity;
 
 
 /**
@@ -19,7 +18,7 @@ public class MeetingItemView {
 
     public static View getInstance(final Context context, View meetingView,final MeetingEntity meeting) {
         if (meetingView == null) {
-            meetingView = View.inflate(context, R.layout.meeting_list_item, null);
+            meetingView = View.inflate(context, R.layout.company_meeting_list_item, null);
         }
 
         TextView meetingThemeView = ViewHolder.findViewById(meetingView, R.id.tv_meeting_theme);

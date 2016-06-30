@@ -8,7 +8,7 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.lzb.oa.ui.auth.RegisterActivity;
+import com.lzb.oa.ui.activity.RegisterActivity;
 
 import cn.smssdk.SMSSDK;
 

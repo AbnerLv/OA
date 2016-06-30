@@ -14,9 +14,9 @@ import cn.smssdk.SMSSDK;
 
 public class SMSVerifyUtil {
     // 填写从短信SDK应用后台注册得到的APPKEY
-    private static String APPKEY = "addb908c50f4";
+    private static final String APPKEY = "13edd8d0ce106";
     // 填写从短信SDK应用后台注册得到的APPSECRET
-    private static String APPSECRET = "b3668eaf3ef4825e6a7653fd8d1799bc";
+    private static final String APPSECRET = "c4c0cd83be256e93027b8ba9239cc02a";
 
     /**
      * 短信验证功能初始化以及注册回调

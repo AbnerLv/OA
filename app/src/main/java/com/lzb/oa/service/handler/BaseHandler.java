@@ -5,4 +5,6 @@ package com.lzb.oa.service.handler;
  */
 public abstract class BaseHandler {
 
+    public abstract void onSuccess(int code);
+
 }

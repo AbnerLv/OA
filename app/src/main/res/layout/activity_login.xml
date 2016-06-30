@@ -72,7 +72,7 @@
                 style="@style/button_normal"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
-                android:text="登陆"
+                android:text="登录"
                 />
         </LinearLayout>
 

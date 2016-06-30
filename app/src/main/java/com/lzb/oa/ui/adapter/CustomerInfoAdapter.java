@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lzb.oa.R;
-import com.lzb.oa.ui.customer.CustomerDetailActivity;
+import com.lzb.oa.ui.activity.CustomerDetailActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -36,7 +36,7 @@ public class EmpInfoCache {
             editor.putString("emp_password", resp.getString("emp_password"));
             editor.commit();
         } catch (Exception e) {
-            Log.d("TAG", e.toString());
+            Log.d(TAG, e.toString());
             System.out.println("缓存员工信息失败");
         }
     }

@@ -10,12 +10,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lzb.oa.commons.Constant;
+import com.lzb.oa.entity.TaskInfoEntity;
 import com.lzb.oa.service.handler.DealTaskHandler;
 import com.lzb.oa.service.handler.GetTaskInfosHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * Created by lvzhenbin on 2015/10/9.
@@ -26,8 +31,6 @@ public class TaskManaService {
     public static TaskManaService instance;
     private RequestQueue mRequestQueue;
 
-
-    private int pageNo = 1;//设置pageNo的初始化值为1，即默认获取的是第一页的数据。
 
     public static TaskManaService getInstance() {
         if (instance == null) {
@@ -44,18 +47,16 @@ public class TaskManaService {
      */
     public void getTaskInfos(Context context, final GetTaskInfosHandler getTaskInfosHandler) {
 
-        String TASK_INFO_URL = Constant.URL + "task_info.json?pageNo="+pageNo;
+        String TASK_INFO_URL = Constant.URL + "getNotHaveTasks.json";
         mRequestQueue = Volley.newRequestQueue(context);
         StringRequest mStringRequest = new StringRequest(TASK_INFO_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if(response == null || "".equals(response)){
-                            pageNo = 1;
-                        }else {
-                            pageNo++;
-                            getTaskInfosHandler.onSuccess(response);
-                        }
+                        Gson mGson = new Gson();
+                        List<TaskInfoEntity> tempTaskInfo = mGson.fromJson(response, new TypeToken<List<TaskInfoEntity>>() {
+                        }.getType());
+                        getTaskInfosHandler.onSuccess(tempTaskInfo);
                     }
                 }, new Response.ErrorListener() {
             @Override

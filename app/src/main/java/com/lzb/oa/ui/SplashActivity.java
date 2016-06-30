@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lzb.oa.R;
-import com.lzb.oa.ui.auth.LoginActivity;
+import com.lzb.oa.ui.activity.UserLoginActivity;
 import com.lzb.oa.utils.StreamTools;
 
 import net.tsz.afinal.FinalHttp;
@@ -323,7 +323,7 @@ public class SplashActivity extends Activity {
     }
 
     protected void enterHome() {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, UserLoginActivity.class);
         startActivity(intent);
         // 关闭当前页面
         finish();

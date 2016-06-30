@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.lzb.oa.entity.TaskInfo;
+import com.lzb.oa.entity.TaskInfoEntity;
 import com.lzb.oa.ui.view.TaskInfoItemView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +19,7 @@ import java.util.List;
 
 public class TaskManaAdapter extends BaseAdapter {
     private static final String TAG = "TaskManaAdapter";
-    private List<TaskInfo> mTaskInfos;
+    private List<TaskInfoEntity> mTaskInfos;
 
     private Context mContext;
 
@@ -28,7 +27,7 @@ public class TaskManaAdapter extends BaseAdapter {
         this.mContext = mContext;
     }
 
-    public void setTaskInfos(List<TaskInfo> taskList){
+    public void setTaskInfos(List<TaskInfoEntity> taskList){
         this.mTaskInfos = taskList;
         this.notifyDataSetChanged();
     }

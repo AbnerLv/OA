@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.lzb.oa.R;
 import com.lzb.oa.commons.Period;
 import com.lzb.oa.entity.TaskInfoEntity;
-import com.lzb.oa.ui.task.TaskDetailActivity;
+import com.lzb.oa.ui.activity.TaskDetailActivity;
 
 /**
  * Created by lvzhenbin on 2016/4/2.

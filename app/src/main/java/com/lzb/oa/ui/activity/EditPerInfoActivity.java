@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.lzb.oa.BaseActivity;
 import com.lzb.oa.R;
 import com.lzb.oa.entity.EmpEntity;
 import com.lzb.oa.service.UserService;

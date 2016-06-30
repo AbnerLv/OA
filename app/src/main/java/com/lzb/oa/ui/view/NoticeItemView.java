@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.lzb.oa.R;
 import com.lzb.oa.entity.NoticeEntity;
-import com.lzb.oa.ui.complany.NoticeDetailActivity;
+import com.lzb.oa.ui.activity.NoticeDetailActivity;
 
 
 /**

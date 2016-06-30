@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.lzb.oa.R;
 import com.lzb.oa.entity.MeetingEntity;
-import com.lzb.oa.ui.complany.MeetingDetailActivity;
+import com.lzb.oa.ui.activity.MeetingDetailActivity;
 
 
 /**

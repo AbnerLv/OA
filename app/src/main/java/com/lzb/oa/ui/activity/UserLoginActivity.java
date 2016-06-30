@@ -12,13 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lzb.oa.BaseActivity;
-import com.lzb.oa.MainActivity;
 import com.lzb.oa.R;
 import com.lzb.oa.service.UserService;
 import com.lzb.oa.service.handler.CheckLoginHandler;
-import com.lzb.oa.ui.auth.ForgetPasswordActivity;
-import com.lzb.oa.ui.auth.SMSRegisterActivity;
 import com.lzb.oa.utils.ActivityCollector;
 
 import org.json.JSONException;
@@ -149,7 +145,7 @@ public class UserLoginActivity extends BaseActivity implements OnClickListener {
     private void progressDialog() {
         final ProgressDialog proDialog = new ProgressDialog(this);
         proDialog.setTitle("验证中");
-        proDialog.setMessage("正在登陆，请稍后…");
+        proDialog.setMessage("正在登录，请稍后…");
         proDialog.setIndeterminate(true);
         proDialog.setCancelable(false);
         proDialog.show();

@@ -1,8 +1,6 @@
 package com.lzb.oa.service;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -12,7 +10,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.lzb.oa.MainActivity;
 import com.lzb.oa.cache.EmpInfoCache;
 import com.lzb.oa.commons.Constant;
 import com.lzb.oa.service.handler.CheckLoginHandler;
@@ -23,9 +20,6 @@ import com.lzb.oa.service.response.ErrorResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by lvzhenbin on 2015/10/4.

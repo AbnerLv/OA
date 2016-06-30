@@ -1,7 +1,6 @@
 package com.lzb.oa.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by lvzhenbin on 2016/4/3.
